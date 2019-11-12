@@ -1,0 +1,34 @@
+{
+  "name": "wagtail-altstreamfield",
+  "version": "0.0.1",
+  "description": "JavaScript portion of an alternate implementation of Wagtail's StreamField.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx webpack --mode=development --watch",
+    "build": "npx webpack --mode=production",
+    "test": "npx karma start"
+  },
+  "keywords": [
+    "Wagtail",
+    "StreamField"
+  ],
+  "author": "David Dorothy",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "draftail": "^1.3.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "uuid": "^3.3.3",
+    "wagtail": "github:wagtail/wagtail"
+  }
+}
