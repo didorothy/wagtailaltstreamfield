@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FormErrorContext from "../../context/formerror";
 import { MaxLengthValidator, MinLengthValidator } from "../../validators/limits";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 
 export default class StreamBlockField extends React.Component {
@@ -35,14 +36,7 @@ export default class StreamBlockField extends React.Component {
             return 'This field is required.';
         }
 
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+        return run_validators(validators, this.props.value);
     }
 
     validate() {

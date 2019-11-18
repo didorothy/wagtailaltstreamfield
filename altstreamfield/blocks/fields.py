@@ -1,7 +1,7 @@
 import copy
 import re
 
-from django.core import validators
+from django.core import checks, validators
 from django.core.exceptions import ValidationError
 from django.forms import Media
 from django.utils.encoding import force_str
@@ -10,6 +10,19 @@ from django.utils.translation import ugettext as _
 
 from wagtail.documents.models import get_document_model
 from wagtail.images import get_image_model
+
+__all__ = [
+    'BooleanField',
+    'CharField',
+    'ChoiceField',
+    'DocumentChooserField',
+    'Field',
+    'ImageChooserField',
+    'IntegerField',
+    'ModelChooserField',
+    'RichTextField',
+    'TextField',
+]
 
 
 class Field:
@@ -95,9 +108,52 @@ class Field:
             raise ValidationError(errors)
 
     def clean(self, value):
-        value = value.to_python(value)
+        value = self.to_python(value)
         self.validate(value)
         self.run_validators(value)
+        return value
+
+    def check(self):
+        return []
+
+    def _check_name(self, name):
+        """Helper method called as part of the system checks framework, to
+        validate that the passed in name is a valid identifier.
+        """
+        errors = []
+        if not name:
+            errors.append(checks.Error(
+                "Field name %r is invalid" % name,
+                hint="Field name cannot be empty",
+                obj=self,
+                id='altstreamfield.E001',
+            ))
+
+        if ' ' in name:
+            errors.append(checks.Error(
+                "Field name %r is invalid" % name,
+                hint="Field names cannot contain spaces",
+                obj=self,
+                id='altstreamfield.E001',
+            ))
+
+        if '-' in name:
+            errors.append(checks.Error(
+                "Field name %r is invalid" % name,
+                "Field names cannot contain dashes",
+                obj=self,
+                id='altstreamfield.E001',
+            ))
+
+        if name and name[0].isdigit():
+            errors.append(checks.Error(
+                "Field name %r is invalid" % name,
+                "Field names cannot begin with a digit",
+                obj=self,
+                id='altstreamfield.E001',
+            ))
+
+        return errors
 
     @property
     def name(self):
@@ -112,7 +168,7 @@ class Field:
         if self._label is not None:
             return self._label
         else:
-            return capfirst(self._name)
+            return capfirst(self._name.replace('_', ' '))
 
     @label.setter
     def label(self, label):
@@ -134,6 +190,11 @@ class CharField(Field):
     def __init__(self, max_length=None, min_length=None, strip=True, **kwargs):
         super().__init__(**kwargs)
         self.strip = strip
+
+        # prevent something dumb.
+        if max_length and min_length and max_length < min_length:
+            raise ValueError("Cannot have a max_length that is smaller than the min_length.")
+
         self.max_length = max_length
         self.min_length = min_length
 
@@ -174,6 +235,10 @@ class IntegerField(Field):
 
     def __init__(self, min_value=None, max_value=None, **kwargs):
         super().__init__(**kwargs)
+
+        if min_value and max_value and max_value < min_value:
+            raise ValueError('Cannot have a max_value that is less than the min_value.')
+
         self.min_value = min_value
         self.max_value = max_value
 
@@ -250,7 +315,7 @@ class ChoiceField(Field):
 
     def validate(self, value):
         '''Custom validation to ensure that the value is in the list of choices.'''
-        return super().validate(value)
+        super().validate(value)
         if value and not self.valid_value(value):
             raise ValidationError(
                 self.error_messages['invalid_choice'],

@@ -5,6 +5,7 @@ import FormErrorContext from "../../context/formerror";
 import { MaxValueValidator, MinValueValidator } from "../../validators/limits";
 import { IntegerValidator } from "../../validators/integer";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 
 export default class BooleanField extends React.Component {
@@ -36,14 +37,7 @@ export default class BooleanField extends React.Component {
             return 'This field is required.';
         }
 
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+        return run_validators(validators, this.props.value);
     }
 
     validate() {
@@ -111,7 +105,5 @@ BooleanField.propTypes = {
     label: PropTypes.string,
     help_text: PropTypes.string,
     required: PropTypes.bool,
-    max_value: PropTypes.number,
-    min_value: PropTypes.number,
     onChange: PropTypes.func.isRequired,
 }

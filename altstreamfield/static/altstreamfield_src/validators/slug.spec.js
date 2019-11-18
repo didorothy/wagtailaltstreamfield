@@ -1,4 +1,3 @@
-import { assert } from 'chai';
 import { SlugValidator, UnicodeSlugValidator } from "./slug";
 import { ValidationError } from "./interface";
 
@@ -46,27 +45,27 @@ let invalid_unicode_slugs = [
 
 describe("SlugValidator", () => {
     describe("SlugValidator.constructor", () => {
-        it("should have default error message and code", () => {
+        test("should have default error message and code", () => {
             let validator = new SlugValidator();
-            assert.equal(validator.message, 'Enter a valid "slug" consisting of letters, numbers, underscores, or hyphens.');
-            assert.equal(validator.code, 'invalid');
+            expect(validator.message).toEqual('Enter a valid "slug" consisting of letters, numbers, underscores, or hyphens.');
+            expect(validator.code).toEqual('invalid');
         });
 
-        it("should allow specifying error message", () => {
+        test("should allow specifying error message", () => {
             let validator = new SlugValidator('Enter a valid URL slug.');
-            assert.equal(validator.message, "Enter a valid URL slug.");
+            expect(validator.message).toEqual("Enter a valid URL slug.");
         });
     });
 
     describe("SlugValidator.doValidate", () => {
-        it("should validate various values", () => {
+        test("should validate various values", () => {
             let validator = new SlugValidator();
             for(let i = 0; i < valid_slugs.length; ++i) {
-                assert.isUndefined(validator.doValidate(valid_slugs[i]));
+                expect(validator.doValidate(valid_slugs[i])).toBeUndefined();
             }
 
             for(let i = 0; i < invalid_slugs.length; ++i) {
-                assert.instanceOf(validator.doValidate(invalid_slugs[i]), ValidationError);
+                expect(validator.doValidate(invalid_slugs[i])).toBeInstanceOf(ValidationError);
             }
         });
     });
@@ -74,27 +73,27 @@ describe("SlugValidator", () => {
 
 describe("UnicodeSlugValidator", () => {
     describe("UnicodeSlugValidator.constructor", () => {
-        it("should have default error message and code", () => {
+        test("should have default error message and code", () => {
             let validator = new UnicodeSlugValidator();
-            assert.equal(validator.message, 'Enter a valid "slug" consisting of Unicode letters, numbers, underscores, or hyphens.');
-            assert.equal(validator.code, 'invalid');
+            expect(validator.message).toEqual('Enter a valid "slug" consisting of Unicode letters, numbers, underscores, or hyphens.');
+            expect(validator.code).toEqual('invalid');
         });
 
-        it("should allow specifying error message", () => {
+        test("should allow specifying error message", () => {
             let validator = new UnicodeSlugValidator('Enter a valid URL slug.');
-            assert.equal(validator.message, "Enter a valid URL slug.");
+            expect(validator.message).toEqual("Enter a valid URL slug.");
         });
     });
 
     describe("UnicodeSlugValidator.doValidate", () => {
-        it("should validate various values", () => {
+        test("should validate various values", () => {
             let validator = new UnicodeSlugValidator();
             for(let i = 0; i < valid_unicode_slugs.length; ++i) {
-                assert.isUndefined(validator.doValidate(valid_unicode_slugs[i]));
+                expect(validator.doValidate(valid_unicode_slugs[i])).toBeUndefined();
             }
 
             for(let i = 0; i < invalid_unicode_slugs.length; ++i) {
-                assert.instanceOf(validator.doValidate(invalid_unicode_slugs[i]), ValidationError);
+                expect(validator.doValidate(invalid_unicode_slugs[i])).toBeInstanceOf(ValidationError);
             }
         });
     });

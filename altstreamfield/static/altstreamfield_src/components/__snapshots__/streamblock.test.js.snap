@@ -1,0 +1,395 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlockContainer #isBottom 1`] = `
+<div>
+  <div
+    class="block-container"
+  >
+    <div
+      class="block-container-before"
+    >
+      <div
+        class="stream-menu"
+      >
+        <button
+          class="c-sf-add-button c-sf-add-button--visible"
+          title="Add"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+          >
+            +
+          </i>
+        </button>
+      </div>
+    </div>
+    <div
+      class="block-container-block"
+    >
+      <div
+        class="block-controls"
+      >
+        <h3>
+          <span
+            class="c-sf-block__header__icon"
+          >
+            <i
+              class="icon icon-placeholder"
+            />
+          </span>
+          Testing
+        </h3>
+        <button
+          class="c-sf-block__actions__single"
+          title="Move up"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-arrow-up"
+          />
+        </button>
+        <button
+          class="c-sf-block__actions__single"
+          title="Delete"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-bin"
+          />
+        </button>
+      </div>
+      <div
+        class="block-content"
+      >
+        <div>
+          Some block content.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BlockContainer #isTop 1`] = `
+<div>
+  <div
+    class="block-container"
+  >
+    <div
+      class="block-container-before"
+    >
+      <div
+        class="stream-menu"
+      >
+        <button
+          class="c-sf-add-button c-sf-add-button--visible"
+          title="Add"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+          >
+            +
+          </i>
+        </button>
+      </div>
+    </div>
+    <div
+      class="block-container-block"
+    >
+      <div
+        class="block-controls"
+      >
+        <h3>
+          <span
+            class="c-sf-block__header__icon"
+          >
+            <i
+              class="icon icon-placeholder"
+            />
+          </span>
+          Testing
+        </h3>
+        <button
+          class="c-sf-block__actions__single disabled"
+          title="Move down"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-arrow-down"
+          />
+        </button>
+        <button
+          class="c-sf-block__actions__single"
+          title="Delete"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-bin"
+          />
+        </button>
+      </div>
+      <div
+        class="block-content"
+      >
+        <div>
+          Some block content.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BlockContainer #minimal 1`] = `
+<div>
+  <div
+    class="block-container"
+  >
+    <div
+      class="block-container-before"
+    >
+      <div
+        class="stream-menu"
+      >
+        <button
+          class="c-sf-add-button c-sf-add-button--visible"
+          title="Add"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+          >
+            +
+          </i>
+        </button>
+      </div>
+    </div>
+    <div
+      class="block-container-block"
+    >
+      <div
+        class="block-controls"
+      >
+        <h3>
+          <span
+            class="c-sf-block__header__icon"
+          >
+            <i
+              class="icon icon-placeholder"
+            />
+          </span>
+          Testing
+        </h3>
+        <button
+          class="c-sf-block__actions__single"
+          title="Move up"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-arrow-up"
+          />
+        </button>
+        <button
+          class="c-sf-block__actions__single disabled"
+          title="Move down"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-arrow-down"
+          />
+        </button>
+        <button
+          class="c-sf-block__actions__single"
+          title="Delete"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            class="icon icon-bin"
+          />
+        </button>
+      </div>
+      <div
+        class="block-content"
+      >
+        <div>
+          Some block content.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BlockTypeMenu #minimal 1`] = `
+<div>
+  <div
+    class="stream-menu"
+  >
+    <button
+      class="c-sf-add-button c-sf-add-button--visible"
+      title="Add"
+      type="button"
+    >
+      <i
+        aria-hidden="true"
+      >
+        +
+      </i>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`StreamBlock #basic_value 1`] = `
+<div>
+  <div
+    class="stream-block"
+  >
+    <div
+      class="block-container"
+    >
+      <div
+        class="block-container-before"
+      >
+        <div
+          class="stream-menu"
+        >
+          <button
+            class="c-sf-add-button c-sf-add-button--visible"
+            title="Add"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+            >
+              +
+            </i>
+          </button>
+        </div>
+      </div>
+      <div
+        class="block-container-block"
+      >
+        <div
+          class="block-controls"
+        >
+          <h3>
+            <span
+              class="c-sf-block__header__icon"
+            >
+              <i
+                class="icon icon-placeholder"
+              />
+            </span>
+            Test Struct Block
+          </h3>
+          <button
+            class="c-sf-block__actions__single"
+            title="Delete"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              class="icon icon-bin"
+            />
+          </button>
+        </div>
+        <div
+          class="block-content"
+        >
+          <div
+            class="struct-block"
+            id="{this.props.block.id}"
+          >
+            <div
+              class="field char_field required"
+            >
+              <label
+                for="6e556490-07cc-11ea-8d71-362b9e155667one"
+              >
+                One
+              </label>
+              <div
+                class="field-content"
+              >
+                <div
+                  class="input"
+                >
+                  <input
+                    id="6e556490-07cc-11ea-8d71-362b9e155667one"
+                    placeholder="One"
+                    type="text"
+                    value="test value"
+                  />
+                </div>
+                <p
+                  class="help"
+                >
+                  Sample help text.
+                </p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="stream-block-append"
+    >
+      <div
+        class="stream-menu"
+      >
+        <button
+          class="c-sf-add-button c-sf-add-button--visible"
+          title="Add"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+          >
+            +
+          </i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StreamBlock #minimal 1`] = `
+<div>
+  <div
+    class="stream-block"
+  >
+    <div
+      class="stream-block-append"
+    >
+      <div
+        class="stream-menu"
+      >
+        <button
+          class="c-sf-add-button c-sf-add-button--visible"
+          title="Add"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+          >
+            +
+          </i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

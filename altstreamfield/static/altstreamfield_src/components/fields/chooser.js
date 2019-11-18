@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-let ModalWorkflow = window.ModalWorkflow;
-
 export default class Chooser extends React.Component {
 
     showChooserModal(evt) {
         let responses = {};
         responses[this.props.chooserType + 'Chosen'] = (data) => this.props.onChosen(data.id);
 
-        ModalWorkflow({
+        window.ModalWorkflow({
             url: this.props.url,
             onload: this.props.modalOnLoadHandlers,
             responses: responses,
@@ -40,9 +38,9 @@ export default class Chooser extends React.Component {
                         <li>
                             <button type="button" className="button action-choose button-small button-secondary" onClick={this.showChooserModal.bind(this)}>Choose another {this.props.chooserType}</button>
                         </li>
-                        <li>
+                        {this.props.editUrl && <li>
                             <a href={this.props.editUrl} className="edit-link button button-small button-secondary" target="_blank" rel="noopener noreferrer">Edit this {this.props.chooserType}</a>
-                        </li>
+                        </li>}
                     </ul>
                 </div>
             </div>;

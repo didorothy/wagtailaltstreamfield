@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TooltipEntity #openTooltip 1`] = `ShallowWrapper {}`;
+
+exports[`TooltipEntity works 1`] = `ShallowWrapper {}`;

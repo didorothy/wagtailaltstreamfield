@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chooser #chosen_className 1`] = `
+<div>
+  <div
+    class="chooser test"
+  >
+    <div
+      class="chosen"
+    >
+      <span>
+        Chosen Value
+      </span>
+      <ul
+        class="actions"
+      >
+        <li>
+          <button
+            class="button action-choose button-small button-secondary"
+            type="button"
+          >
+            Choose another 
+            test
+          </button>
+        </li>
+        <li>
+          <a
+            class="edit-link button button-small button-secondary"
+            href="/url/1"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Edit this 
+            test
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Chooser #chosen_editUrl 1`] = `
+<div>
+  <div
+    class="chooser"
+  >
+    <div
+      class="chosen"
+    >
+      <span>
+        Chosen Value
+      </span>
+      <ul
+        class="actions"
+      >
+        <li>
+          <button
+            class="button action-choose button-small button-secondary"
+            type="button"
+          >
+            Choose another 
+            test
+          </button>
+        </li>
+        <li>
+          <a
+            class="edit-link button button-small button-secondary"
+            href="/url/1"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Edit this 
+            test
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Chooser #chosen_required 1`] = `
+<div>
+  <div
+    class="chooser"
+  >
+    <div
+      class="chosen"
+    >
+      <span>
+        Chosen Value
+      </span>
+      <ul
+        class="actions"
+      >
+        <li>
+          <button
+            class="button action-choose button-small button-secondary"
+            type="button"
+          >
+            Choose another 
+            test
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Chooser #chosen_value 1`] = `
+<div>
+  <div
+    class="chooser"
+  >
+    <div
+      class="chosen"
+    >
+      <span>
+        Chosen Value
+      </span>
+      <ul
+        class="actions"
+      >
+        <li>
+          <button
+            class="button action-clear button-small button-secondary"
+            type="button"
+          >
+            Clear choice
+          </button>
+        </li>
+        <li>
+          <button
+            class="button action-choose button-small button-secondary"
+            type="button"
+          >
+            Choose another 
+            test
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Chooser #minimal 1`] = `
+<div>
+  <div
+    class="chooser blank"
+  >
+    <div
+      class="unchosen"
+    >
+      <button
+        class="button action-choose button-small button-secondary"
+        id="test"
+        type="button"
+      >
+        Choose 
+        a
+         
+        test
+      </button>
+    </div>
+  </div>
+</div>
+`;

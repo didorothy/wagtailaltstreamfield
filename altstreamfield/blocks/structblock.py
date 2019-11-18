@@ -2,6 +2,7 @@ import collections
 import copy
 import json
 
+from django.core.exceptions import ValidationError
 from django.utils.html import format_html, format_html_join
 
 from .core import Block, BoundBlock, DeclarativeFieldsMetaclass
@@ -44,14 +45,24 @@ class StructBlock(Block, metaclass=DeclarativeFieldsMetaclass):
     def check(self, **kwargs):
         errors = super().check(**kwargs)
         for name, field in self.fields.items():
-            errors.extend(self._check_name(name))
+            errors.extend(field._check_name(name))
 
         return errors
+
+    def clean(self, value):
+        '''Cleans all the data of every field and returns the cleaned StructValue instance.'''
+        cleaned_data = self._to_struct_value([])
+        value = self.to_python(value)
+
+        for name, field in self.fields.items():
+            cleaned_data[name] = field.clean(value.get(name))
+
+        return cleaned_data
 
     def to_python(self, value):
         '''Converts a JSON value in to a Python version of the value, in this case a StructValue.'''
         if not isinstance(value, dict):
-            raise ValueError('"value" must be an instance of a dict.')
+            raise ValidationError('"value" must be an instance of a dict.', 'invalid')
 
         return self._to_struct_value([
             (name, field.to_python(value.get(name, None)))
@@ -74,7 +85,10 @@ class StructBlock(Block, metaclass=DeclarativeFieldsMetaclass):
 
     def render_basic(self, value, context=None):
         return format_html('<dl>\n{}\n</dl>', format_html_join(
-            '\n', '    <dt>{}</dt>\n    <dd>{}</dd>', value.items()))
+            '\n',
+            '    <dt>{}</dt>\n    <dd>{}</dd>',
+            [(key, val) for key, val in value.items() if key in self.fields]
+        ))
 
     def render_edit_js(self, rendered_blocks=None):
         '''Override this method do render custom JavaScript needed for editing this type of block.'''

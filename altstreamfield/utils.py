@@ -1,4 +1,4 @@
-from django.forms import Media
+from django.forms.widgets import Media
 
 def get_class_media(base, instance):
     '''Convenience function to be used when overriding the `media` property.

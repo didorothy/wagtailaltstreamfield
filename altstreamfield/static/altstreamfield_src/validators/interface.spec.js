@@ -1,21 +1,36 @@
-import { assert } from 'chai';
-import { ValidationError } from "./interface";
+import { ValidationError, Validator } from "./interface";
 
 describe('ValidationError', () => {
-    it("Should allow undefined codes.", () => {
+    test("Should allow undefined codes.", () => {
         let err = new ValidationError("Test");
-        assert.equal(err.message, "Test");
-        assert.equal(err.code, "invalid");
+        expect(err.message).toEqual("Test");
+        expect(err.code).toEqual("invalid");
     });
 
-    it("Should allow special codes.", () => {
+    test("Should allow special codes.", () => {
         let err = new ValidationError("Test", "bad_result");
-        assert.equal(err.message, "Test");
-        assert.equal(err.code, "bad_result");
+        expect(err.message).toEqual("Test");
+        expect(err.code).toEqual("bad_result");
     });
 
-    it("Should allow for message templating", () => {
+    test("Should allow for message templating", () => {
         let err = new ValidationError('There were too many {{ name }} for your {{ kind }}.', undefined, {name: 'people', kind: 'automobile'});
-        assert.equal(err.message, "There were too many people for your automobile.");
+        expect(err.message).toEqual("There were too many people for your automobile.");
     })
 })
+
+describe('Validator', () => {
+    test("doValidation raise not implemented", () => {
+        let val = new Validator()
+        expect(() => {
+            val.doValidate('value');
+        }).toThrow();
+    });
+
+    test("isEqual raise not implemented", () => {
+        let val = new Validator()
+        expect(() => {
+            val.isEqual('value');
+        }).toThrow();
+    });
+});

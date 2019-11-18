@@ -9,6 +9,7 @@ import ModalWorkflowSource from "../../vendor/wagtail/modalworkflowsource";
 
 import FormErrorContext from "../../context/formerror";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 import Icon from "../../vendor/wagtail/icon";
 
@@ -40,20 +41,11 @@ export default class RichTextField extends React.Component {
      */
     _validate() {
         let validators = [];
-        /*if(this.props.required && !this.props.value.trim()) {
+        if(this.props.required && !this.props.value) {
             return 'This field is required.';
         }
 
-        */
-
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+       return run_validators(validators, this.props.value);
     }
 
     validate() {

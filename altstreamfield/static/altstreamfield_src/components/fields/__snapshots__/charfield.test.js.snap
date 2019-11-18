@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharField #error 1`] = `
+<div>
+  <div
+    class="field char_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="text"
+          value=""
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CharField #help_text 1`] = `
+<div>
+  <div
+    class="field char_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="text"
+          value="sample text"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CharField #label 1`] = `
+<div>
+  <div
+    class="field char_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="text"
+          value="sample text"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CharField #minimal 1`] = `
+<div>
+  <div
+    class="field char_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test"
+          type="text"
+          value="sample text"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CharField #required 1`] = `
+<div>
+  <div
+    class="field char_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="text"
+          value="sample text"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FormErrorContext from "../../context/formerror";
 import { MaxLengthValidator, MinLengthValidator } from "../../validators/limits";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 
 export default class ChoiceField extends React.Component {
@@ -35,21 +36,7 @@ export default class ChoiceField extends React.Component {
             return 'This field is required.';
         }
 
-        if(this.props.min_length) {
-            validators.push(new MinLengthValidator(this.props.min_length));
-        }
-        if(this.props.max_length) {
-            validators.push(new MaxLengthValidator(this.props.max_length));
-        }
-
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+        return run_validators(validators, this.props.value);
     }
 
     validate() {
@@ -122,7 +109,5 @@ ChoiceField.propTypes = {
     label: PropTypes.string,
     help_text: PropTypes.string,
     required: PropTypes.bool,
-    max_length: PropTypes.number,
-    min_length: PropTypes.number,
     onChange: PropTypes.func.isRequired,
 }

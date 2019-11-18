@@ -14,6 +14,14 @@ from django.utils.text import capfirst
 
 from .fields import *
 
+__all__ = [
+    'BaseBlock',
+    'DeclarativeFieldsMetaclass',
+    'DeclarativeSubBlocksMetaclass',
+    'BoundBlock',
+    'Block',
+    'UnknownBlock',
+]
 
 class BaseBlock(MediaDefiningClass):
     '''Note this was taken directly from wagtail's source code because we may need to modify it in the future.'''
@@ -107,11 +115,11 @@ class BoundBlock:
         self.errors = errors
 
     def render(self, context=None):
-        self.block.render(self.value, context=context)
+        return self.block.render(self.value, context=context)
 
-    def reder_as_block(self, context=None):
+    def render_as_block(self, context=None):
         '''TODO: Not sure I need this.'''
-        self.render(context=context)
+        return self.render(context=context)
 
     def __str__(self):
         return self.block.render(self.value)
@@ -121,6 +129,8 @@ class Block(metaclass=BaseBlock):
     '''Base class for all blocks.'''
     name = ''
     creation_counter = 0
+
+    TEMPLATE_VAR = 'value'
 
     def __init__(self, *args, **kwargs):
         self.meta = self._meta_class()
@@ -139,8 +149,17 @@ class Block(metaclass=BaseBlock):
         if not self.meta.label:
             self.label = capfirst(force_str(name).replace('_', ' '))
 
+    def validate(self, value):
+        '''To perform validation, override this method. Throw a ValidationError if validation fails.
+
+        Note: this validation should be done on the value returned from `to_python()`.
+        '''
+        pass
+
     def clean(self, value):
         '''Validate value and return a cleaned version or throw a ValidationError if validation fails.'''
+        value = self.to_python(value)
+        self.validate(value)
         return value
 
     def to_python(self, value):
@@ -221,12 +240,12 @@ class Block(metaclass=BaseBlock):
         """
         return []
 
-    def _check_name(self, name):
+    def _check_name(self):
         """Helper method called as part of the system checks framework, to
         validate that the passed in name is a valid identifier.
         """
         errors = []
-        if not name:
+        if not self.name:
             errors.append(checks.Error(
                 "Block name %r is invalid" % self.name,
                 hint="Block name cannot be empty",
@@ -234,7 +253,7 @@ class Block(metaclass=BaseBlock):
                 id='altstreamfield.E001',
             ))
 
-        if ' ' in name:
+        if ' ' in self.name:
             errors.append(checks.Error(
                 "Block name %r is invalid" % self.name,
                 hint="Block names cannot contain spaces",
@@ -242,7 +261,7 @@ class Block(metaclass=BaseBlock):
                 id='altstreamfield.E001',
             ))
 
-        if '-' in name:
+        if '-' in self.name:
             errors.append(checks.Error(
                 "Block name %r is invalid" % self.name,
                 "Block names cannot contain dashes",
@@ -250,7 +269,7 @@ class Block(metaclass=BaseBlock):
                 id='altstreamfield.E001',
             ))
 
-        if name and name[0].isdigit():
+        if self.name and self.name[0].isdigit():
             errors.append(checks.Error(
                 "Block name %r is invalid" % self.name,
                 "Block names cannot begin with a digit",

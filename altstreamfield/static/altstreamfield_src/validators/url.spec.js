@@ -1,4 +1,3 @@
-import { assert } from 'chai';
 import { URLValidator } from "./url";
 import { ValidationError } from "./interface";
 
@@ -148,52 +147,52 @@ let invalid_urls = [
 
 describe("URLValidator", () => {
     describe("URLValidator.constructor", () => {
-        it("Should allow specifying URL schemes [protocols]", () => {
+        test("Should allow specifying URL schemes [protocols]", () => {
             let validator = new URLValidator(['http', 'https']);
-            assert.notEqual(validator.schemes.indexOf('http'), -1);
-            assert.notEqual(validator.schemes.indexOf('https'), -1);
-            assert.equal(validator.schemes.indexOf('ftp'), -1);
+            expect(validator.schemes.indexOf('http')).not.toEqual(-1);
+            expect(validator.schemes.indexOf('https')).not.toEqual(-1);
+            expect(validator.schemes.indexOf('ftp')).toEqual(-1);
         });
 
-        it("Should allow not specifying URL schemes [protocols]", () => {
+        test("Should allow not specifying URL schemes [protocols]", () => {
             let validator = new URLValidator();
-            assert.notEqual(validator.schemes.indexOf('http'), -1);
-            assert.notEqual(validator.schemes.indexOf('https'), -1);
-            assert.notEqual(validator.schemes.indexOf('ftp'), -1);
-            assert.notEqual(validator.schemes.indexOf('ftps'), -1);
+            expect(validator.schemes.indexOf('http')).not.toEqual(-1);
+            expect(validator.schemes.indexOf('https')).not.toEqual(-1);
+            expect(validator.schemes.indexOf('ftp')).not.toEqual(-1);
+            expect(validator.schemes.indexOf('ftps')).not.toEqual(-1);
         });
     });
 
     describe("URLValidator.doValidate", () => {
-        it("Should validate various URLs.", () => {
+        test("Should validate various URLs.", () => {
             let validator = new URLValidator();
             for(let i = 0; i < valid_urls.length; ++i) {
-                assert.isUndefined(validator.doValidate(valid_urls[i]));
+                expect(validator.doValidate(valid_urls[i])).toBeUndefined();
             }
 
             for(let i = 0; i < invalid_urls.length; ++i) {
-                assert.instanceOf(validator.doValidate(invalid_urls[i]), ValidationError);
+                expect(validator.doValidate(invalid_urls[i])).toBeInstanceOf(ValidationError);
             }
         });
     });
 
     describe("URLValidator.isEqual", () => {
-        it("should be equal to a similarly configured validator.", () => {
+        test("should be equal to a similarly configured validator.", () => {
             let a = new URLValidator(undefined, "Must provide a valid url.");
             let b = new URLValidator(undefined, "Must provide a valid url.");
-            assert.isTrue(a.isEqual(b));
+            expect(a.isEqual(b)).toEqual(true);
         });
 
-        it("should not be equal to a differently configured validator", () => {
+        test("should not be equal to a differently configured validator", () => {
             let a = new URLValidator();
             let b = new URLValidator(undefined, "Must provide a valid url.");
-            assert.isFalse(a.isEqual(b));
+            expect(a.isEqual(b)).toEqual(false);
 
             let c = new URLValidator(['http', 'https']);
-            assert.isFalse(a.isEqual(c));
+            expect(a.isEqual(c)).toEqual(false);
 
             let d = new URLValidator(['http', 'https', 'udp', 'tcp']);
-            assert.isFalse(a.isEqual(d));
+            expect(a.isEqual(d)).toEqual(false);
         });
     })
 });

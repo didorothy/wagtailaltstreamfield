@@ -4,7 +4,7 @@ import uuid4 from "uuid/v4";
 
 import { camel_pascal_to_label } from "../utils/text";
 
-class BlockTypeMenu extends React.Component {
+export class BlockTypeMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ class BlockTypeMenu extends React.Component {
             let css_classes = "c-sf-button action-add-block" + block_type.icon
             let icon_css_classes = "icon icon-" + block_type.icon;
             options.push(<li key={block_type.type}>
-                <button type="button" className={css_classes} onClick={(evt) => { self.handleChosen(evt, block_type); }}>
+                <button type="button" className={css_classes} title={block_type.type} onClick={(evt) => { self.handleChosen(evt, block_type); }}>
                     <span className="c-sf-button__icon">
                         <i className={icon_css_classes}></i>
                     </span>
@@ -52,7 +52,12 @@ class BlockTypeMenu extends React.Component {
     }
 }
 
-class BlockContainer extends React.Component {
+BlockTypeMenu.propTypes = {
+    blockTypes: PropTypes.array.isRequired,
+    onChosen: PropTypes.func.isRequired,
+};
+
+export class BlockContainer extends React.Component {
     handleChosen(block_type) {
         this.props.onInsert(block_type, this.props.block.id);
     }
@@ -104,6 +109,7 @@ BlockContainer.propTypes = {
     block: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onInsert: PropTypes.func.isRequired,
     onMove: PropTypes.func.isRequired,
     isTop: PropTypes.bool,
     isBottom: PropTypes.bool,

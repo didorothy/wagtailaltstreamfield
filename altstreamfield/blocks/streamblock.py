@@ -3,14 +3,21 @@ import collections.abc
 import json
 import uuid
 
-from django.core.exceptions import ValidationError
+from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
 from django.forms.utils import ErrorList
-from django.utils.html import format_html_join
+from django.utils.html import format_html_join, mark_safe
 from django.utils.translation import ugettext as _
 
 from .core import Block, BoundBlock, DeclarativeSubBlocksMetaclass, UnknownBlock
 from .fields import Field
 from ..utils import get_class_media
+
+__all__ = [
+    'StreamBlock',
+    'StreamBlockField',
+    'StreamBlockValidationError',
+    'StreamValue',
+]
 
 
 class StreamValue(collections.abc.Sequence):
@@ -39,35 +46,26 @@ class StreamValue(collections.abc.Sequence):
             return self.block.__class__.__name__
 
 
-    def __init__(self, stream_block, stream_data, is_lazy=False, raw_text=None):
-        self.is_lazy = is_lazy
+    def __init__(self, stream_block, stream_data):
         self.stream_block = stream_block
         self.stream_data = stream_data
         self._bound_blocks = {}
-        self.raw_text = raw_text
 
     def __getitem__(self, i):
         if i not in self._bound_blocks:
-            #if self.is_lazy:
-            #    raw_value = self.stream_data[i]
-            #    type_name = raw_value['type']
-            #    child_block = self._get_block_instance(type_name)
-
-            #    value = child_block.to_python(raw_value['value'])
-            #    block_id = raw_value.get('id')
-            #else:
-
             if isinstance(self.stream_data[i], dict):
-                block_id = self.stream_data[i]['id']
+                block_id = self.stream_data[i].get('id', uuid.uuid4())
                 type_name = self.stream_data[i]['type']
                 value = self.stream_data[i]['value']
+
+                child_block = self._get_block_instance(type_name)
+                value = child_block.to_python(value)
+
+                self._bound_blocks[i] = StreamValue.StreamChild(child_block, value, id=block_id)
+            elif isinstance(self.stream_data[i], StreamValue.StreamChild):
+                self._bound_blocks[i] = self.stream_data[i]
             else:
-                raise ValueError('Bad data encountered.')
-
-            child_block = self._get_block_instance(type_name)
-            value = child_block.to_python(value)
-
-            self._bound_blocks[i] = StreamValue.StreamChild(child_block, value, id=block_id)
+                raise ValueError('Bad data encountered: ' + repr(self.stream_data[i]))
 
         return self._bound_blocks[i]
 
@@ -80,36 +78,17 @@ class StreamValue(collections.abc.Sequence):
         else:
             return UnknownBlock()
 
-    def _prefetch_blocks(self, type_name, child_block):
-        '''Prefetch all child blocks for the given `type_name` using the given
-        `child_block`.
-
-        This prevents n queries for n blocks of a specific type.
-        '''
-        raw_values = collections.OrderedDict(
-            (i, item['value']) for i, item in enumerate(self.stream_data)
-            if item['type'] == type_name
-        )
-        converted_values = child_block.bulk_to_python(raw_values.values())
-
-        for i, value in zip(raw_values.keys(), converted_values):
-            block_id = self.stream_data[i].get('id')
-            self._bound_blocks[i] = StreamValue.StreamChild(child_block, value, id=block_id)
-
     def to_json(self):
         json_result = []
         for i, stream_data_item in enumerate(self.stream_data):
-            if self.is_lazy and i not in self._bound_blocks:
-                item = stream_data_item
-                item['id'] = item.get('id', str(uuid.uuid4()))
-            else:
-                child = self[i]
-                child.id = child.id or str(uuid.uuid4())
-                item = {
-                    'type': child.block_type,
-                    'value': child.block.to_json(child.value),
-                    'id': child.id,
-                }
+            child = self[i]
+            child.id = child.id or str(uuid.uuid4())
+            item = {
+                'type': child.block_type,
+                'value': child.block.to_json(child.value),
+                'id': child.id,
+            }
+
             json_result.append(item)
 
         return json_result
@@ -159,11 +138,6 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
         '''Child blocks, sorted into their groups.'''
         return sorted(self.child_blocks.values(), key=lambda child_block: child_block.meta.group)
 
-    def render_list_member(self, block_type, value, prefix, index, errors=None, id=None):
-        '''Render the HTML for a single list item. This consists of a container, hidden fields to manage ID/deleted state/type, delete/reorder buttons, and the child block's own HTML.'''
-        # TODO: decide if we need this.
-        pass
-
     @property
     def media(self):
         media = get_class_media(super().media, self)
@@ -177,17 +151,11 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
     def required(self):
         return self.meta.required
 
-    def clean(self, value):
-        cleaned_data = []
-        errors = {}
+    def validate(self, value, errors=None):
+        '''Performs validation of the StreamBlock.'''
+        if errors is None:
+            errors = {}
         non_block_errors = ErrorList()
-        for i, child in enumerate(value):  # child is a StreamChild instance
-            try:
-                cleaned_data.append(
-                    (child.block_type, child.block.clean(child.value), child.id)
-                )
-            except ValidationError as e:
-                errors[i] = ErrorList([e])
 
         if self.meta.min_num is not None and self.meta.min_num > len(value):
             non_block_errors.append(ValidationError(
@@ -225,11 +193,31 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
             # which only involves the 'params' list
             raise StreamBlockValidationError(block_errors=errors, non_block_errors=non_block_errors)
 
+    def clean(self, value):
+        cleaned_data = []
+        errors = {}
+        value = self.to_python(value)
+
+        # clean all subblock values
+        for i, child in enumerate(value):  # child is a StreamChild instance
+            try:
+                cleaned_data.append(
+                    {
+                        'type': child.block_type,
+                        'value': child.block.clean(child.value),
+                        'id': child.id,
+                    }
+                )
+            except ValidationError as e:
+                errors[i] = ErrorList([e])
+
+        self.validate(value, errors)
+
         return StreamValue(self, cleaned_data)
 
     def to_python(self, value):
         '''Converts the JSON representation to a Python Representation.'''
-        return StreamValue(self, value, is_lazy=False)
+        return StreamValue(self, value)
 
     def to_json(self, value):
         if not value:
@@ -270,7 +258,7 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
         errors = super().check(**kwargs)
         for name, child_block in self.child_blocks.items():
             errors.extend(child_block.check(**kwargs))
-            errors.extend(self._check_name(name))
+            errors.extend(child_block._check_name())
         return errors
 
     class Meta:
@@ -293,11 +281,18 @@ class StreamBlockField(Field):
 
     def __init__(self, block, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if not isinstance(block, StreamBlock):
+            raise TypeError('"block" must be of type StreamBlock.')
         self.block = block
 
     def to_python(self, value):
         '''Converts the JSON value to an equivalent Python value.'''
-        return self.block.to_python(value.get('value', []))
+        if hasattr(value, 'get'):
+            return self.block.to_python(value.get('value', []))
+        elif isinstance(value, (list, tuple)):
+            return self.block.to_python(value)
+        else:
+            raise ValidationError('"value" must be a dict like object or a list/tuple.')
 
     def to_json(self, value):
         '''Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).'''

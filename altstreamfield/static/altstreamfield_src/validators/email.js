@@ -34,36 +34,30 @@ const ipv6_regex = new RegExp(String.raw`^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1
 
 export class EmailValidator extends Validator {
 
-    /**
-     * The message to display if the result is invalid.
-     */
-    message = '';
-
-    /**
-     * The code
-     */
-    code = '';
-
-    /**
-     * A list of domains to whitelist.
-     */
-    whitelist = [];
-
     constructor(message, code, whitelist) {
         super();
 
+        /**
+         * The message to display if the result is invalid.
+         */
         if(message !== undefined) {
             this.message = message;
         } else {
             this.message = 'Enter a valid email address.'
         }
 
+        /**
+         * The code
+         */
         if(code !== undefined) {
             this.code = code;
         } else {
             this.code = 'invalid';
         }
 
+        /**
+         * A list of domains to whitelist.
+         */
         if(whitelist !== undefined) {
             this.whitelist = whitelist;
         } else {

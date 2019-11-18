@@ -1,21 +1,18 @@
 import { Validator, ValidationError } from './interface';
 
 export class DecimalValidator extends Validator {
-    /**
-     * The message to display if the result is invalid.
-     */
-    messages = {
-        invalid: 'Enter a number.',
-        max_digits: 'Ensure that there are no more than {{max}} digits in total.',
-        max_decimal_places: 'Ensure that there are no more than {{max}} decimal places.',
-        max_whole_digits: 'Ensure that ther are no more than {{max}} digits before the decimal point.'
-    };
-
-    max_digits = 0;
-    decimal_places = 0;
 
     constructor(max_digits=20, decimal_places=6) {
         super();
+        /**
+         * The message to display if the result is invalid.
+         */
+        this.messages = {
+            invalid: 'Enter a number.',
+            max_digits: 'Ensure that there are no more than {{max}} digits in total.',
+            max_decimal_places: 'Ensure that there are no more than {{max}} decimal places.',
+            max_whole_digits: 'Ensure that ther are no more than {{max}} digits before the decimal point.'
+        };
         this.max_digits = max_digits;
         this.decimal_places = decimal_places;
     }
@@ -37,9 +34,6 @@ export class DecimalValidator extends Validator {
             digits = decimal_places;
         }
 
-        console.log(value.toString())
-        console.log(digits)
-        console.log(decimal_places)
         if(digits > this.max_digits) {
             return new ValidationError(
                 this.messages.max_digits,
@@ -71,3 +65,5 @@ export class DecimalValidator extends Validator {
             value.decimal_places === this.decimal_places;
     }
 }
+
+

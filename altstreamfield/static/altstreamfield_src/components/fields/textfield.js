@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FormErrorContext from "../../context/formerror";
 import { MaxLengthValidator, MinLengthValidator } from "../../validators/limits";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 
 export default class TextField extends React.Component {
@@ -42,14 +43,7 @@ export default class TextField extends React.Component {
             validators.push(new MaxLengthValidator(this.props.max_length));
         }
 
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+        return run_validators(validators, this.props.value);
     }
 
     validate() {
@@ -73,7 +67,11 @@ export default class TextField extends React.Component {
 
     componentDidMount() {
         setTimeout(() => {
-            window.autosize(window.jQuery('#' + this.props.owner_id + this.props.name));
+            try {
+                window.autosize(window.jQuery('#' + this.props.owner_id + this.props.name));
+            } catch(ex) {
+                // during testing window.autosize may not exist at some point.
+            }
         }, 10);
     }
 

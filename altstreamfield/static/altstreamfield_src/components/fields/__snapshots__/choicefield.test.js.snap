@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChoiceField #error 1`] = `
+<div>
+  <div
+    class="field choice_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <select
+          id="struct-01test"
+        >
+          <option
+            value=""
+          >
+            ------
+          </option>
+          <option
+            value="one"
+          >
+            One
+          </option>
+          <option
+            value="two"
+          >
+            Two
+          </option>
+          <option
+            value="three"
+          >
+            Three
+          </option>
+        </select>
+        <span />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChoiceField #help_text 1`] = `
+<div>
+  <div
+    class="field choice_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <select
+          id="struct-01test"
+        >
+          <option
+            value=""
+          >
+            ------
+          </option>
+          <option
+            value="one"
+          >
+            One
+          </option>
+          <option
+            value="two"
+          >
+            Two
+          </option>
+          <option
+            value="three"
+          >
+            Three
+          </option>
+        </select>
+        <span />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChoiceField #label 1`] = `
+<div>
+  <div
+    class="field choice_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <select
+          id="struct-01test"
+        >
+          <option
+            value=""
+          >
+            ------
+          </option>
+          <option
+            value="one"
+          >
+            One
+          </option>
+          <option
+            value="two"
+          >
+            Two
+          </option>
+          <option
+            value="three"
+          >
+            Three
+          </option>
+        </select>
+        <span />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChoiceField #minimal 1`] = `
+<div>
+  <div
+    class="field choice_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <select
+          id="struct-01test"
+        >
+          <option
+            value=""
+          >
+            ------
+          </option>
+          <option
+            value="one"
+          >
+            One
+          </option>
+          <option
+            value="two"
+          >
+            Two
+          </option>
+          <option
+            value="three"
+          >
+            Three
+          </option>
+        </select>
+        <span />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChoiceField #required 1`] = `
+<div>
+  <div
+    class="field choice_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <select
+          id="struct-01test"
+        >
+          <option
+            value=""
+          >
+            ------
+          </option>
+          <option
+            value="one"
+          >
+            One
+          </option>
+          <option
+            value="two"
+          >
+            Two
+          </option>
+          <option
+            value="three"
+          >
+            Three
+          </option>
+        </select>
+        <span />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
