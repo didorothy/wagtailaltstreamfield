@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app.StreamField #minimal 1`] = `
+<div>
+  <div
+    class="stream-field"
+  >
+    <div
+      class="form-status"
+    >
+      Valid
+    </div>
+    <div
+      class="stream-block"
+      id="10cbacdc-76de-4a23-a771-8d35ab0ce2f7"
+    >
+      <div
+        class="stream-block-append"
+      >
+        <div
+          class="stream-menu"
+        >
+          <button
+            class="c-sf-add-button c-sf-add-button--visible"
+            title="Add"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+            >
+              +
+            </i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmbedBlock no data 1`] = `ShallowWrapper {}`;
+
+exports[`EmbedBlock renders 1`] = `ShallowWrapper {}`;

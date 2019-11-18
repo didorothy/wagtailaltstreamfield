@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaBlock no data 1`] = `ShallowWrapper {}`;
+
+exports[`MediaBlock renders 1`] = `ShallowWrapper {}`;
+
+exports[`MediaBlock tooltip opens 1`] = `
+<div>
+  <div
+    class="Tooltip Tooltip--top-left"
+    role="tooltip"
+    style="top: 0px; left: 0px;"
+  >
+    <div
+      style="max-width: 300px;"
+    >
+      <div
+        id="test"
+      >
+        Test
+      </div>
+    </div>
+  </div>
+</div>
+`;

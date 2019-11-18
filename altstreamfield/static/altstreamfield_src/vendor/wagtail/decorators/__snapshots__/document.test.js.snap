@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Document no data 1`] = `ShallowWrapper {}`;
+
+exports[`Document works 1`] = `ShallowWrapper {}`;

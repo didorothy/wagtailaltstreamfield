@@ -1,7 +1,7 @@
 import json
 import uuid
 
-from django.core.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.forms import Field, HiddenInput
@@ -11,11 +11,13 @@ from .blocks.streamblock import StreamBlock, StreamValue
 from .utils import get_class_media
 
 
-class BlockInput(HiddenInput):
+class StreamBlockInput(HiddenInput):
     template_name = 'altstreamfield/widgets/blockinput.html'
 
     def __init__(self, block, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        if not isinstance(block, StreamBlock):
+            raise TypeError('"block" must be of type StreamBlock.')
         self.block = block
 
     def get_context(self, name, value, attrs):
@@ -35,7 +37,6 @@ class BlockInput(HiddenInput):
     @property
     def media(self):
         media = get_class_media(super().media, self)
-        print(self.block.media)
         return media + self.block.media
 
     class Media:
@@ -50,14 +51,14 @@ class BlockInput(HiddenInput):
         }
 
 
-class BlockField(Field):
+class StreamBlockField(Field):
     def __init__(self, block=None, **kwargs):
-        if block is None:
-            raise ImproperlyConfigured("BlockField was not passed a 'block' object.")
+        if not isinstance(block, StreamBlock):
+            raise TypeError("StreamBlockField requires a block that is an instance of StreamBlock.")
         self.block = block
 
         if 'widget' not in kwargs:
-            kwargs['widget'] = BlockInput(block)
+            kwargs['widget'] = StreamBlockInput(block)
 
         super().__init__(**kwargs)
 
@@ -68,7 +69,8 @@ class BlockField(Field):
         except json.JSONDecodeError:
             return '[]'
 
-
+'''
+# This does not appear to be necessary for us.
 # https://github.com/django/django/blob/64200c14e0072ba0ffef86da46b2ea82fd1e019a/django/db/models/fields/subclassing.py#L31-L44
 class Creator:
     """
@@ -84,6 +86,7 @@ class Creator:
 
     def __set__(self, obj, value):
         obj.__dict__[self.field.name] = self.field.to_python(value)
+'''
 
 
 class AltStreamField(models.Field):
@@ -94,7 +97,7 @@ class AltStreamField(models.Field):
         elif issubclass(block_type, StreamBlock):
             self.stream_block = block_type(required=not self.blank)
         else:
-            raise ValueError('"block_type" must be an instance of a StreamBlock or a class that inherits from StreamBlock.')
+            raise TypeError('"block_type" must be an instance of a StreamBlock or a class that inherits from StreamBlock.')
 
     def get_internal_type(self):
         return 'TextField'
@@ -118,7 +121,7 @@ class AltStreamField(models.Field):
             try:
                 unpacked_value = json.loads(value)
             except ValueError:
-                return StreamValue(self.stream_block, [], raw_text=value)
+                raise ValidationError("Could not parse the value as a JSON string.")
 
             if unpacked_value is None:
                 # Literal string value is null.
@@ -128,8 +131,7 @@ class AltStreamField(models.Field):
             else:
                 return StreamValue(self.stream_block, unpacked_value['value'])
         else:
-            # unexpected values so just return an empty version for now.
-            return StreamValue(self.stream_block, [])
+            raise ValidationError("Unexpected value '{}' in AltStreamField.".format(value))
 
     def get_prep_value(self, value):
         return json.dumps(self.stream_block.to_json(value), cls=DjangoJSONEncoder)
@@ -138,7 +140,7 @@ class AltStreamField(models.Field):
         return self.to_python(value)
 
     def formfield(self, **kwargs):
-        defaults = {'form_class': BlockField, 'block': self.stream_block}
+        defaults = {'form_class': StreamBlockField, 'block': self.stream_block}
         defaults.update(kwargs)
         return super().formfield(**defaults)
 

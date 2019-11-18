@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FormErrorContext from "../../context/formerror";
 import { IntegerValidator } from "../../validators/integer";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 import Chooser from "./chooser";
 
@@ -46,14 +47,7 @@ export default class ImageChooserField extends React.Component {
             return null;
         }
 
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+        return run_validators(validators, this.props.value);
     }
 
     validate() {

@@ -1,36 +1,35 @@
-import { assert } from 'chai';
 import { ProhibitNullCharacterValidator } from './prohibitnullcharacter';
 import { ValidationError } from './interface';
 
 describe("ProhibitNullCharacterValidator", () => {
     describe("ProhibitNullCharacterValidator.constructor", () => {
-        it("should allow for default message and code", () => {
+        test("should allow for default message and code", () => {
             let validator = new ProhibitNullCharacterValidator();
-            assert.equal(validator.message, "Null characters are not allowed.");
-            assert.equal(validator.code, 'null-characters-not-allowed');
+            expect(validator.message).toEqual("Null characters are not allowed.");
+            expect(validator.code).toEqual('null-characters-not-allowed');
         });
 
-        it("should allow for custom message and code", () => {
+        test("should allow for custom message and code", () => {
             let validator = new ProhibitNullCharacterValidator('Test message.', 'invalid-char');
-            assert.equal(validator.message, "Test message.");
-            assert.equal(validator.code, 'invalid-char');
+            expect(validator.message).toEqual("Test message.");
+            expect(validator.code).toEqual('invalid-char');
         });
     });
 
-    describe("ProhibitNullCharacterValidator.doValidate", () => {
+    test("ProhibitNullCharacterValidator.doValidate", () => {
         let validator = new ProhibitNullCharacterValidator();
-        assert.instanceOf(validator.doValidate('test \x00 string'), ValidationError);
-        assert.isUndefined(validator.doValidate("test"));
-        assert.isUndefined(validator.doValidate(1))
-        assert.isUndefined(validator.doValidate(undefined))
+        expect(validator.doValidate('test \x00 string')).toBeInstanceOf(ValidationError);
+        expect(validator.doValidate("test")).toBeUndefined();
+        expect(validator.doValidate(1)).toBeUndefined();
+        expect(validator.doValidate(undefined)).toBeUndefined();
     });
 
-    describe("ProhibitNullCharacterValidator.isEqual", () => {
+    test("ProhibitNullCharacterValidator.isEqual", () => {
         let a = new ProhibitNullCharacterValidator();
         let b = new ProhibitNullCharacterValidator();
-        assert.isTrue(a.isEqual(b));
+        expect(a.isEqual(b)).toEqual(true);
 
         let c = new ProhibitNullCharacterValidator('bad');
-        assert.isFalse(a.isEqual(c));
+        expect(a.isEqual(c)).toEqual(false);
     });
 });

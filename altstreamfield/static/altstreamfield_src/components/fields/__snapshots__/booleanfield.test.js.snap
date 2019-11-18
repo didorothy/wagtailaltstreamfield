@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BooleanField #error 1`] = `
+<div>
+  <div
+    class="field boolean_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="checkbox"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="checkbox"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BooleanField #help_text 1`] = `
+<div>
+  <div
+    class="field boolean_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="checkbox"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="checkbox"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BooleanField #label 1`] = `
+<div>
+  <div
+    class="field boolean_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="checkbox"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="checkbox"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BooleanField #minimal 1`] = `
+<div>
+  <div
+    class="field boolean_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="checkbox"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test"
+          type="checkbox"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BooleanField #required 1`] = `
+<div>
+  <div
+    class="field boolean_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="checkbox"
+      >
+        <input
+          checked=""
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="checkbox"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;

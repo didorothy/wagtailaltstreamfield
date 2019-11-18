@@ -1,4 +1,3 @@
-import { assert } from 'chai';
 import { EmailValidator } from "./email";
 import { ValidationError } from "./interface";
 
@@ -70,19 +69,19 @@ describe("EmailValidator", () => {
     describe("EmailValidator.constructor", () => {
         it("Should not require parameters.", () => {
             let validator = new EmailValidator();
-            assert.instanceOf(validator, EmailValidator);
-            assert.equal(validator.message, "Enter a valid email address.");
-            assert.equal(validator.code, "invalid");
-            assert.equal(validator.whitelist.length, 1);
-            assert.equal(validator.whitelist[0], 'localhost');
+            expect(validator).toBeInstanceOf(EmailValidator);
+            expect(validator.message).toEqual("Enter a valid email address.");
+            expect(validator.code).toEqual("invalid");
+            expect(validator.whitelist.length).toEqual(1);
+            expect(validator.whitelist[0]).toEqual('localhost');
         });
 
         it("Should allow specifying a special message, code, and whitelist.", () => {
             let validator = new EmailValidator("Special message about error.", "special-error-code", ['localhost', 'google.com']);
-            assert.instanceOf(validator, EmailValidator);
-            assert.equal(validator.message, "Special message about error.");
-            assert.equal(validator.code, "special-error-code");
-            assert.equal(validator.whitelist.length, 2);
+            expect(validator).toBeInstanceOf(EmailValidator);
+            expect(validator.message).toEqual("Special message about error.");
+            expect(validator.code).toEqual("special-error-code");
+            expect(validator.whitelist.length).toEqual(2);
         });
     });
 
@@ -91,17 +90,17 @@ describe("EmailValidator", () => {
             let validator = new EmailValidator();
             for(let i = 0; i < valid_emails.length; ++i) {
                 let error = validator.doValidate(valid_emails[i]);
-                assert.isUndefined(error);
+                expect(error).toBeUndefined();
             }
 
             for(let i = 0; i < invalid_emails.length; ++i) {
                 let error = validator.doValidate(invalid_emails[i]);
-                assert.instanceOf(error, ValidationError);
+                expect(error).toBeInstanceOf(ValidationError);
             }
 
             validator = new EmailValidator(undefined, undefined, ['localdomain'])
             let error = validator.doValidate('email@localdomain');
-            assert.isUndefined(error);
+            expect(error).toBeUndefined();
         });
     });
 
@@ -109,19 +108,19 @@ describe("EmailValidator", () => {
         it("should be equal to a similarly configured validator.", () => {
             let a = new EmailValidator('Not foobar.');
             let b = new EmailValidator('Not foobar.');
-            assert.isTrue(a.isEqual(b));
+            expect(a.isEqual(b)).toEqual(true);
         });
 
         it("should not be equal to a differently configured validator", () => {
             let a = new EmailValidator('Not foobar.');
             let b = new EmailValidator('Not foobar.', 'different-invalid');
-            assert.isFalse(a.isEqual(b));
+            expect(a.isEqual(b)).toEqual(false);
 
             let c = new EmailValidator('Not foobar.', undefined, ['foobar']);
-            assert.isFalse(a.isEqual(c));
+            expect(a.isEqual(c)).toEqual(false);
 
             let d = new EmailValidator('Not foobar.', undefined, ['foobar', 'localhost']);
-            assert.isFalse(a.isEqual(d));
+            expect(a.isEqual(d)).toEqual(false);
         });
     });
 });

@@ -20,6 +20,7 @@ export default class StreamField extends React.Component {
                 'type': props.block_type.type,
                 'value': [],
             };
+            props.input_element.value = JSON.stringify(data);
         }
 
         this.state = {

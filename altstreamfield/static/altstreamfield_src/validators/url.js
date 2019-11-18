@@ -47,10 +47,6 @@ const url_regex = String.raw`^(?:[a-z0-9\.\-\+]*)://` + // scheme is validated s
  * Validates URLs.
  */
 export class URLValidator extends RegexValidator {
-    /**
-     * The supported schemes for the url.
-     */
-    schemes = [];
 
     constructor(schemes, message, code) {
         super();
@@ -60,6 +56,9 @@ export class URLValidator extends RegexValidator {
         }
         super(regex, message, code);
 
+        /**
+         * The supported schemes for the url.
+         */
         if(schemes !== undefined) {
             this.schemes = schemes;
         } else {

@@ -5,6 +5,7 @@ import FormErrorContext from "../../context/formerror";
 import { MaxValueValidator, MinValueValidator } from "../../validators/limits";
 import { IntegerValidator } from "../../validators/integer";
 import { name_to_label } from "../../utils/text";
+import { run_validators } from "../../utils/validation";
 import Field from "./field";
 
 export default class IntegerField extends React.Component {
@@ -23,8 +24,26 @@ export default class IntegerField extends React.Component {
         this.context.reportStatus(this.props.owner_id + this.props.name, this.state.error ? this.context.STATUS_ERROR : this.context.STATUS_OK);
     }
 
+    parseInt(value) {
+        value = parseInt(value, 10);
+        if(isNaN(value)) {
+            value = null;
+        }
+        return value;
+    }
+
+    parseString(value) {
+        value = this.parseInt(value);
+        if(value === null) {
+            return '';
+        } else {
+            return value + '';
+        }
+    }
+
     handleChange(evt) {
-        this.props.onChange(this.props.name, evt.target.value);
+        let value = this.parseInt(evt.target.value);
+        this.props.onChange(this.props.name, value);
     }
 
     /**
@@ -43,14 +62,7 @@ export default class IntegerField extends React.Component {
             validators.push(new MaxValueValidator(this.props.max_value));
         }
 
-        for(let i = 0; i < validators.length; ++i) {
-            let err = validators[i].doValidate(this.props.value);
-            if(err) {
-                return err.message;
-            }
-        }
-
-        return null;
+        return run_validators(validators, this.props.value);
     }
 
     validate() {
@@ -99,7 +111,7 @@ export default class IntegerField extends React.Component {
             help_text={this.props.help_text}
             error={this.state.error ? this.state.error_message : ''}>
 
-                <input type="number" id={input_id} value={this.props.value} placeholder={label} onChange={this.handleChange}/>
+                <input type="number" id={input_id} value={this.parseString(this.props.value)} placeholder={label} onChange={this.handleChange}/>
             </Field>;
     }
 }

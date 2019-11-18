@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField #error 1`] = `
+<div>
+  <div
+    class="field text_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Text Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <textarea
+          cols="40"
+          id="struct-01test"
+          placeholder="Test Text Field"
+          rows="1"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextField #help_text 1`] = `
+<div>
+  <div
+    class="field text_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Text Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <textarea
+          cols="40"
+          id="struct-01test"
+          placeholder="Test Text Field"
+          rows="1"
+        >
+          sample text
+        </textarea>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextField #label 1`] = `
+<div>
+  <div
+    class="field text_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Text Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <textarea
+          cols="40"
+          id="struct-01test"
+          placeholder="Test Text Field"
+          rows="1"
+        >
+          sample text
+        </textarea>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextField #minimal 1`] = `
+<div>
+  <div
+    class="field text_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <textarea
+          cols="40"
+          id="struct-01test"
+          placeholder="Test"
+          rows="1"
+        >
+          sample text
+        </textarea>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TextField #required 1`] = `
+<div>
+  <div
+    class="field text_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Text Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <textarea
+          cols="40"
+          id="struct-01test"
+          placeholder="Test Text Field"
+          rows="1"
+        >
+          sample text
+        </textarea>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;

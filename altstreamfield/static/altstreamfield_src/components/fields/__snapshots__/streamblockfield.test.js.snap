@@ -1,0 +1,479 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StreamBlockField #error 1`] = `
+<div>
+  <div
+    class="field stream_block_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="stream-block"
+        >
+          <div
+            class="stream-block-append"
+          >
+            <div
+              class="stream-menu"
+            >
+              <button
+                class="c-sf-add-button c-sf-add-button--visible"
+                title="Add"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                >
+                  +
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StreamBlockField #help_text 1`] = `
+<div>
+  <div
+    class="field stream_block_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="stream-block"
+        >
+          <div
+            class="stream-block-append"
+          >
+            <div
+              class="stream-menu"
+            >
+              <button
+                class="c-sf-add-button c-sf-add-button--visible"
+                title="Add"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                >
+                  +
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StreamBlockField #label 1`] = `
+<div>
+  <div
+    class="field stream_block_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="stream-block"
+        >
+          <div
+            class="stream-block-append"
+          >
+            <div
+              class="stream-menu"
+            >
+              <button
+                class="c-sf-add-button c-sf-add-button--visible"
+                title="Add"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                >
+                  +
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StreamBlockField #minimal 1`] = `
+<div>
+  <div
+    class="field stream_block_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="stream-block"
+        >
+          <div
+            class="stream-block-append"
+          >
+            <div
+              class="stream-menu"
+            >
+              <button
+                class="c-sf-add-button c-sf-add-button--visible"
+                title="Add"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                >
+                  +
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StreamBlockField #required 1`] = `
+<div>
+  <div
+    class="field stream_block_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="stream-block"
+        >
+          <div
+            class="block-container"
+          >
+            <div
+              class="block-container-before"
+            >
+              <div
+                class="stream-menu"
+              >
+                <button
+                  class="c-sf-add-button c-sf-add-button--visible"
+                  title="Add"
+                  type="button"
+                >
+                  <i
+                    aria-hidden="true"
+                  >
+                    +
+                  </i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="block-container-block"
+            >
+              <div
+                class="block-controls"
+              >
+                <h3>
+                  <span
+                    class="c-sf-block__header__icon"
+                  >
+                    <i
+                      class="icon icon-placeholder"
+                    />
+                  </span>
+                  Test Struct Block
+                </h3>
+                <button
+                  class="c-sf-block__actions__single"
+                  title="Delete"
+                  type="button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="icon icon-bin"
+                  />
+                </button>
+              </div>
+              <div
+                class="block-content"
+              >
+                <div
+                  class="struct-block"
+                  id="{this.props.block.id}"
+                >
+                  <div
+                    class="field char_field required error"
+                  >
+                    <label
+                      for="44c5e004-85b8-4280-9730-2822e4782230url"
+                    >
+                      Url
+                    </label>
+                    <div
+                      class="field-content"
+                    >
+                      <div
+                        class="input"
+                      >
+                        <input
+                          id="44c5e004-85b8-4280-9730-2822e4782230url"
+                          placeholder="Url"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      
+                      <p
+                        class="error-message"
+                      >
+                        This field is required.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="stream-block-append"
+          >
+            <div
+              class="stream-menu"
+            >
+              <button
+                class="c-sf-add-button c-sf-add-button--visible"
+                title="Add"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                >
+                  +
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StreamBlockField #string_block 1`] = `
+<div>
+  <div
+    class="field stream_block_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="stream-block"
+        >
+          <div
+            class="block-container"
+          >
+            <div
+              class="block-container-before"
+            >
+              <div
+                class="stream-menu"
+              >
+                <button
+                  class="c-sf-add-button c-sf-add-button--visible"
+                  title="Add"
+                  type="button"
+                >
+                  <i
+                    aria-hidden="true"
+                  >
+                    +
+                  </i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="block-container-block"
+            >
+              <div
+                class="block-controls"
+              >
+                <h3>
+                  <span
+                    class="c-sf-block__header__icon"
+                  >
+                    <i
+                      class="icon icon-placeholder"
+                    />
+                  </span>
+                  Test Struct Block
+                </h3>
+                <button
+                  class="c-sf-block__actions__single"
+                  title="Delete"
+                  type="button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="icon icon-bin"
+                  />
+                </button>
+              </div>
+              <div
+                class="block-content"
+              >
+                <div
+                  class="struct-block"
+                  id="{this.props.block.id}"
+                >
+                  <div
+                    class="field char_field required error"
+                  >
+                    <label
+                      for="44c5e004-85b8-4280-9730-2822e4782230url"
+                    >
+                      Url
+                    </label>
+                    <div
+                      class="field-content"
+                    >
+                      <div
+                        class="input"
+                      >
+                        <input
+                          id="44c5e004-85b8-4280-9730-2822e4782230url"
+                          placeholder="Url"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      
+                      <p
+                        class="error-message"
+                      >
+                        This field is required.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="stream-block-append"
+          >
+            <div
+              class="stream-menu"
+            >
+              <button
+                class="c-sf-add-button c-sf-add-button--visible"
+                title="Add"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                >
+                  +
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;

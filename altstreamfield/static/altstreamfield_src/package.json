@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx webpack --mode=development --watch",
     "build": "npx webpack --mode=production",
-    "test": "npx karma start"
+    "test": "npx jest --coverage"
   },
   "keywords": [
     "Wagtail",
@@ -19,16 +19,30 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest": "^24.9.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "decimal.js": "^10.2.0",
     "draftail": "^1.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "uuid": "^3.3.3",
     "wagtail": "github:wagtail/wagtail"
+  },
+  "jest": {
+    "setupFiles": [
+      "./vendor/wagtail/tests/adapter.js",
+      "./vendor/wagtail/tests/stubs.js",
+      "./vendor/wagtail/tests/mock-fetch.js"
+    ]
   }
 }

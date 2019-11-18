@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IntegerField #error 1`] = `
+<div>
+  <div
+    class="field integer_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="number"
+          value=""
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`IntegerField #help_text 1`] = `
+<div>
+  <div
+    class="field integer_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="number"
+          value="1"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`IntegerField #label 1`] = `
+<div>
+  <div
+    class="field integer_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="number"
+          value="1"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`IntegerField #minimal 1`] = `
+<div>
+  <div
+    class="field integer_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test"
+          type="number"
+          value="1"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`IntegerField #required 1`] = `
+<div>
+  <div
+    class="field integer_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test Char Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <input
+          id="struct-01test"
+          placeholder="Test Char Field"
+          type="number"
+          value="1"
+        />
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;

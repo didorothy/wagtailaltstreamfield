@@ -180,7 +180,6 @@ class ModalWorkflowSource extends Component {
   }
 
   onChosen(data) {
-      console.log(data)
     const { editorState, entityType, onComplete } = this.props;
     const content = editorState.getCurrentContent();
     const selection = editorState.getSelection();
