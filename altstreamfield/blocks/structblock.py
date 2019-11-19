@@ -24,6 +24,10 @@ class StructValue(collections.OrderedDict):
 
 
 class StructBlock(Block, metaclass=DeclarativeFieldsMetaclass):
+    '''A block that contains a "structure" of data.
+
+    This class describes a Block that can contain a dictionary of values collected by it's fields that are used to render the block in various ways.
+    '''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
