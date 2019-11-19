@@ -6,6 +6,7 @@ import BooleanField from "./components/fields/booleanfield";
 import CharField from "./components/fields/charfield";
 import ChoiceField from "./components/fields/choicefield";
 import DocumentChooserField from "./components/fields/documentchooserfield";
+import Field from "./components/fields/field";
 import ImageChooserField from "./components/fields/imagechooserfield";
 import IntegerField from "./components/fields/integerfield";
 import RichTextField from "./components/fields/richtextfield";
@@ -13,6 +14,8 @@ import StreamBlockField from "./components/fields/streamblockfield";
 import TextField from "./components/fields/textfield";
 import StreamBlock from "./components/streamblock";
 import StructBlock from "./components/structblock";
+
+import FormErrorContext from "./context/formerror";
 
 import StreamField from "./app/streamfield";
 
@@ -89,4 +92,6 @@ window.asf = {
     create_structblock,
     create_streamblock,
     fields: FIELD_TYPES,
+    FormErrorContext,
+    Field,
 };
