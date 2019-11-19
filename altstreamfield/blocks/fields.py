@@ -224,6 +224,7 @@ class TextField(CharField):
 
 
 class IntegerField(Field):
+    '''Represents and integer value.'''
     args_list = Field.args_list + [
         'min_value',
         'max_value',
@@ -260,6 +261,7 @@ class IntegerField(Field):
 
 
 class BooleanField(Field):
+    '''Represents a boolean value.'''
 
     def to_python(self, value):
         if isinstance(value, str) and value.lower() in ('false', '0'):
@@ -278,6 +280,7 @@ class CallableChoiceIterator:
 
 
 class ChoiceField(Field):
+    '''Represents a selection from a list of choices.'''
     args_list = Field.args_list + [
         'choices',
     ]
@@ -339,6 +342,7 @@ class ChoiceField(Field):
 
 
 class RichTextField(Field):
+    '''Represents rich text.'''
 
     @property
     def media(self):
@@ -381,6 +385,7 @@ class ModelChooserField(Field):
 
 
 class DocumentChooserField(ModelChooserField):
+    '''Represents a selection of a Wagtail document.'''
     model = get_document_model()
 
     @property
@@ -395,6 +400,7 @@ class DocumentChooserField(ModelChooserField):
 
 
 class ImageChooserField(ModelChooserField):
+    '''Represents a selection of a Wagtail Image.'''
     @property
     def model(self):
         return get_image_model()

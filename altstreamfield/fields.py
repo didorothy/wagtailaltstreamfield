@@ -12,6 +12,7 @@ from .utils import get_class_media
 
 
 class StreamBlockInput(HiddenInput):
+    '''A Django Form Widget for collecting StreamBlock data.'''
     template_name = 'altstreamfield/widgets/blockinput.html'
 
     def __init__(self, block, *args, **kwargs):
@@ -52,6 +53,7 @@ class StreamBlockInput(HiddenInput):
 
 
 class StreamBlockField(Field):
+    '''A Django Form Field for collecting StreamBlock data.'''
     def __init__(self, block=None, **kwargs):
         if not isinstance(block, StreamBlock):
             raise TypeError("StreamBlockField requires a block that is an instance of StreamBlock.")
@@ -90,6 +92,7 @@ class Creator:
 
 
 class AltStreamField(models.Field):
+    '''An alternate Django Model Field implementation of a Wagtail StreamField.'''
     def __init__(self, block_type, **kwargs):
         super().__init__(**kwargs)
         if isinstance(block_type, StreamBlock):

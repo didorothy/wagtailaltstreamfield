@@ -21,6 +21,10 @@ __all__ = [
 
 
 class StreamValue(collections.abc.Sequence):
+    '''The default value type for a StreamBlock.
+
+    This organizes the sub-blocks into an array and allows for the subblocks to handle their own values.
+    '''
 
 
     class StreamChild(BoundBlock):
@@ -52,6 +56,7 @@ class StreamValue(collections.abc.Sequence):
         self._bound_blocks = {}
 
     def __getitem__(self, i):
+        '''Retrieve a single BoundBlock from this StreamValue's collection of BoundBlocks.'''
         if i not in self._bound_blocks:
             if isinstance(self.stream_data[i], dict):
                 block_id = self.stream_data[i].get('id', uuid.uuid4())
@@ -79,6 +84,7 @@ class StreamValue(collections.abc.Sequence):
             return UnknownBlock()
 
     def to_json(self):
+        '''Convert this StreamValue to a JSON representation.'''
         json_result = []
         for i, stream_data_item in enumerate(self.stream_data):
             child = self[i]
@@ -94,6 +100,7 @@ class StreamValue(collections.abc.Sequence):
         return json_result
 
     def __len__(self):
+        '''The number of blocks in this StreamValue.'''
         return len(self.stream_data)
 
     def __repr__(self):
@@ -110,6 +117,7 @@ class StreamValue(collections.abc.Sequence):
 
 
 class StreamBlockValidationError(ValidationError):
+    '''Represents an error caused when validating a StreamBlock's value.'''
     def __init__(self, block_errors=None, non_block_errors=None):
         params = {}
         if block_errors:
@@ -120,7 +128,12 @@ class StreamBlockValidationError(ValidationError):
             'Validation error in StreamBlock', params=params)
 
 
+
 class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
+    '''Represents a stream of sub-blocks.
+
+    This Block type specifies what kinds of blocks that it can contain and then stores those values in a StreamValue.
+    '''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
