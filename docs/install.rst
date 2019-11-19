@@ -3,11 +3,11 @@ Installation and Usage
 
 To install use pip:
 
-`pip install wagtailaltstreamfield`
+`pip install wagtail-altstreamfield`
 
 Add "altstreamfield" to your Django Project's `INSTALLED_APPS` list.
 
-Create some custom blocks and a `django.db.Model` subclass like the following:
+Create some custom blocks and a `wagtail.core.models.Page` subclass like the following:
 
 .. code-block:: python
    :linenos:
