@@ -25,7 +25,7 @@ copyright = '2019, David Dorothy'
 author = 'David Dorothy'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.0.3'
 
 
 # -- General configuration ---------------------------------------------------
