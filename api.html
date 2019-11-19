@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python API &mdash; Wagtail Alternate StreamField 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Customization" href="customization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Wagtail Alternate StreamField
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-altstreamfield.blocks.fields"><cite>altstreamfield.blocks.fields</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-altstreamfield.blocks.core"><cite>altstreamfield.blocks.core</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-altstreamfield.blocks.structblock"><cite>altstreamfield.blocks.structblock</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-altstreamfield.blocks.streamblock"><cite>altstreamfield.blocks.streamblock</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-altstreamfield.fields"><cite>altstreamfield.fields</cite></a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Wagtail Alternate StreamField</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Python API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-altstreamfield.blocks.fields">
+<span id="altstreamfield-blocks-fields"></span><h2><cite>altstreamfield.blocks.fields</cite><a class="headerlink" href="#module-altstreamfield.blocks.fields" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.BooleanField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">BooleanField</code><span class="sig-paren">(</span><em class="sig-param">required=True</em>, <em class="sig-param">validators=()</em>, <em class="sig-param">help_text=''</em>, <em class="sig-param">error_messages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.BooleanField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a boolean value.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.BooleanField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.BooleanField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the JSON value to an equivalent Python value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.CharField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">CharField</code><span class="sig-paren">(</span><em class="sig-param">max_length=None</em>, <em class="sig-param">min_length=None</em>, <em class="sig-param">strip=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.CharField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a single line of text.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.CharField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.CharField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that the JSON value is converted to a proper Python string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.ChoiceField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">ChoiceField</code><span class="sig-paren">(</span><em class="sig-param">choices=()</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ChoiceField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a selection from a list of choices.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.ChoiceField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ChoiceField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensure that the value is a string or empty string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.ChoiceField.valid_value">
+<code class="sig-name descname">valid_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ChoiceField.valid_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the provided value is a valid choice.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.ChoiceField.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ChoiceField.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom validation to ensure that the value is in the list of choices.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.DocumentChooserField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">DocumentChooserField</code><span class="sig-paren">(</span><em class="sig-param">required=True</em>, <em class="sig-param">validators=()</em>, <em class="sig-param">help_text=''</em>, <em class="sig-param">error_messages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.DocumentChooserField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a selection of a Wagtail document.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.DocumentChooserField.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#altstreamfield.blocks.fields.DocumentChooserField.media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the field to pass Media objects out to the <cite>altstreamfield.fields.BlockInput</cite> widget.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="altstreamfield.blocks.fields.DocumentChooserField.model">
+<code class="sig-name descname">model</code><a class="headerlink" href="#altstreamfield.blocks.fields.DocumentChooserField.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">wagtail.documents.models.Document</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.Field">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">Field</code><span class="sig-paren">(</span><em class="sig-param">required=True</em>, <em class="sig-param">validators=()</em>, <em class="sig-param">help_text=''</em>, <em class="sig-param">error_messages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for all fields.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.get_args">
+<code class="sig-name descname">get_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field.get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the arguments needed to reproduce this instance in JavaScript.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.get_dependencies">
+<code class="sig-name descname">get_dependencies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field.get_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this field depends on any other blocks then override this method and return them here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#altstreamfield.blocks.fields.Field.media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the field to pass Media objects out to the <cite>altstreamfield.fields.BlockInput</cite> widget.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.run_validators">
+<code class="sig-name descname">run_validators</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field.run_validators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs registered validators against the value and raises a ValidationError if any validators fail.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the JSON value to an equivalent Python value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.Field.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.Field.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does basic validation that cannot be done with validators.</p>
+<p>Override this method to perform custom validation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.ImageChooserField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">ImageChooserField</code><span class="sig-paren">(</span><em class="sig-param">required=True</em>, <em class="sig-param">validators=()</em>, <em class="sig-param">help_text=''</em>, <em class="sig-param">error_messages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ImageChooserField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a selection of a Wagtail Image.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.ImageChooserField.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#altstreamfield.blocks.fields.ImageChooserField.media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the field to pass Media objects out to the <cite>altstreamfield.fields.BlockInput</cite> widget.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.IntegerField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">IntegerField</code><span class="sig-paren">(</span><em class="sig-param">min_value=None</em>, <em class="sig-param">max_value=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.IntegerField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents and integer value.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.IntegerField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.IntegerField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate that int() can be called on the input. Return the result of int() or None for empty values.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.ModelChooserField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">ModelChooserField</code><span class="sig-paren">(</span><em class="sig-param">required=True</em>, <em class="sig-param">validators=()</em>, <em class="sig-param">help_text=''</em>, <em class="sig-param">error_messages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ModelChooserField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for Model based chooser fields.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.ModelChooserField.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ModelChooserField.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.ModelChooserField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.ModelChooserField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the JSON value to an equivalent Python value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.RichTextField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">RichTextField</code><span class="sig-paren">(</span><em class="sig-param">required=True</em>, <em class="sig-param">validators=()</em>, <em class="sig-param">help_text=''</em>, <em class="sig-param">error_messages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.RichTextField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents rich text.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.fields.RichTextField.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#altstreamfield.blocks.fields.RichTextField.media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the field to pass Media objects out to the <cite>altstreamfield.fields.BlockInput</cite> widget.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.fields.TextField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.fields.</code><code class="sig-name descname">TextField</code><span class="sig-paren">(</span><em class="sig-param">max_length=None</em>, <em class="sig-param">min_length=None</em>, <em class="sig-param">strip=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.fields.TextField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents multiple lines of text.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-altstreamfield.blocks.core">
+<span id="altstreamfield-blocks-core"></span><h2><cite>altstreamfield.blocks.core</cite><a class="headerlink" href="#module-altstreamfield.blocks.core" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altstreamfield.blocks.core.BaseBlock">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.core.</code><code class="sig-name descname">BaseBlock</code><a class="headerlink" href="#altstreamfield.blocks.core.BaseBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Note this was taken directly from wagtail’s source code because we may need to modify it in the future.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.core.DeclarativeFieldsMetaclass">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.core.</code><code class="sig-name descname">DeclarativeFieldsMetaclass</code><a class="headerlink" href="#altstreamfield.blocks.core.DeclarativeFieldsMetaclass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect Fields declared on the base classes.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.core.DeclarativeSubBlocksMetaclass">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.core.</code><code class="sig-name descname">DeclarativeSubBlocksMetaclass</code><a class="headerlink" href="#altstreamfield.blocks.core.DeclarativeSubBlocksMetaclass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metaclass that collects sub-blocks declared on the base classes.
+(cheerfully stolen from <a class="reference external" href="https://github.com/django/django/blob/master/django/forms/forms.py">https://github.com/django/django/blob/master/django/forms/forms.py</a>)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.core.Block">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.core.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for all blocks.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook for the Django system checks framework -
+returns a list of django.core.checks.Error objects indicating validity errors in the block</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate value and return a cleaned version or throw a ValidationError if validation fails.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.get_context">
+<code class="sig-name descname">get_context</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">parent_context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.get_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dict of context variables (derived from the block value and combined with the parent_context)
+to be used as the template context when rendering this value through a template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.get_template">
+<code class="sig-name descname">get_template</code><span class="sig-paren">(</span><em class="sig-param">context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.get_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the template to use for rendering the block if specified on meta class.
+This extraction was added to make dynamic templates possible if you override this method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.js_type">
+<em class="property">property </em><code class="sig-name descname">js_type</code><a class="headerlink" href="#altstreamfield.blocks.core.Block.js_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows retriving the class name from a template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.render">
+<code class="sig-name descname">render</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a text rendering of ‘value’, suitable for display on templates. By default, this will
+use a template (with the passed context, supplemented by the result of get_context) if a
+‘template’ property is specified on the block, and fall back on render_basic otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.render_basic">
+<code class="sig-name descname">render_basic</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.render_basic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a text rendering of ‘value’, suitable for display on templates. render() will fall back on
+this if the block does not define a ‘template’ property.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.render_edit_js">
+<code class="sig-name descname">render_edit_js</code><span class="sig-paren">(</span><em class="sig-param">rendered_blocks=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.render_edit_js" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override this method do render custom JavaScript needed for editing this type of block.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.required">
+<em class="property">property </em><code class="sig-name descname">required</code><a class="headerlink" href="#altstreamfield.blocks.core.Block.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flag used to determine whether labels for this block should display a ‘required’ asterisk.
+False by default, since Block does not provide any validation of its own - it’s up to subclasses
+to define what required-ness means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a JSON value to a Python version of the value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.core.Block.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.Block.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>To perform validation, override this method. Throw a ValidationError if validation fails.</p>
+<p>Note: this validation should be done on the value returned from <cite>to_python()</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.core.UnknownBlock">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.core.</code><code class="sig-name descname">UnknownBlock</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.core.UnknownBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a block that should be used when the block type cannot be found.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-altstreamfield.blocks.structblock">
+<span id="altstreamfield-blocks-structblock"></span><h2><cite>altstreamfield.blocks.structblock</cite><a class="headerlink" href="#module-altstreamfield.blocks.structblock" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altstreamfield.blocks.structblock.StructBlock">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.structblock.</code><code class="sig-name descname">StructBlock</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>A block that contains a “structure” of data.</p>
+<p>This class describes a Block that can contain a dictionary of values collected by it’s fields that are used to render the block in various ways.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.structblock.StructBlock.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook for the Django system checks framework -
+returns a list of django.core.checks.Error objects indicating validity errors in the block</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.structblock.StructBlock.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans all the data of every field and returns the cleaned StructValue instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.structblock.StructBlock.render_basic">
+<code class="sig-name descname">render_basic</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock.render_basic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a text rendering of ‘value’, suitable for display on templates. render() will fall back on
+this if the block does not define a ‘template’ property.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.structblock.StructBlock.render_edit_js">
+<code class="sig-name descname">render_edit_js</code><span class="sig-paren">(</span><em class="sig-param">rendered_blocks=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock.render_edit_js" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override this method do render custom JavaScript needed for editing this type of block.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.structblock.StructBlock.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the StructValue to a dict for rendering to JSON.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.structblock.StructBlock.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructBlock.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a JSON value in to a Python version of the value, in this case a StructValue.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.structblock.StructValue">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.structblock.</code><code class="sig-name descname">StructValue</code><span class="sig-paren">(</span><em class="sig-param">block</em>, <em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.structblock.StructValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class that generates a StructBlock value from provided fields.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-altstreamfield.blocks.streamblock">
+<span id="altstreamfield-blocks-streamblock"></span><h2><cite>altstreamfield.blocks.streamblock</cite><a class="headerlink" href="#module-altstreamfield.blocks.streamblock" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.streamblock.</code><code class="sig-name descname">StreamBlock</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a stream of sub-blocks.</p>
+<p>This Block type specifies what kinds of blocks that it can contain and then stores those values in a StreamValue.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook for the Django system checks framework -
+returns a list of django.core.checks.Error objects indicating validity errors in the block</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate value and return a cleaned version or throw a ValidationError if validation fails.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.get_default">
+<code class="sig-name descname">get_default</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.get_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default values set on StreamBlock should be a list of (type_name,
+value) tuples - we can’t use StreamValue directly because that would
+require a reference back to the StreamBlock that hasn’t been built yet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.get_searchable_content">
+<code class="sig-name descname">get_searchable_content</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.get_searchable_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all searchable content from the child blocks in this StreamBlock.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.render_basic">
+<code class="sig-name descname">render_basic</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">context=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.render_basic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Very simple rendering of the stream block.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.render_edit_js">
+<code class="sig-name descname">render_edit_js</code><span class="sig-paren">(</span><em class="sig-param">rendered_blocks=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.render_edit_js" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override this method do render custom JavaScript needed for editing this type of block.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.required">
+<em class="property">property </em><code class="sig-name descname">required</code><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flag used to determine whether labels for this block should display a ‘required’ asterisk.
+False by default, since Block does not provide any validation of its own - it’s up to subclasses
+to define what required-ness means.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.sorted_child_blocks">
+<code class="sig-name descname">sorted_child_blocks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.sorted_child_blocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Child blocks, sorted into their groups.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the JSON representation to a Python Representation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlock.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">errors=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlock.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs validation of the StreamBlock.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.streamblock.</code><code class="sig-name descname">StreamBlockField</code><span class="sig-paren">(</span><em class="sig-param">block</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A field that allows for nesting StreamBlocks.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockField.get_args">
+<code class="sig-name descname">get_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockField.get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the arguments needed to reproduce this instance in JavaScript.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockField.get_dependencies">
+<code class="sig-name descname">get_dependencies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockField.get_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the dependent blocks as a dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockField.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockField.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the JSON value to an equivalent Python value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockField.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockField.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does basic validation that cannot be done with validators.</p>
+<p>Override this method to perform custom validation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="altstreamfield.blocks.streamblock.StreamBlockValidationError">
+<em class="property">exception </em><code class="sig-prename descclassname">altstreamfield.blocks.streamblock.</code><code class="sig-name descname">StreamBlockValidationError</code><span class="sig-paren">(</span><em class="sig-param">block_errors=None</em>, <em class="sig-param">non_block_errors=None</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamBlockValidationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents an error caused when validating a StreamBlock’s value.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.blocks.streamblock.StreamValue">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.blocks.streamblock.</code><code class="sig-name descname">StreamValue</code><span class="sig-paren">(</span><em class="sig-param">stream_block</em>, <em class="sig-param">stream_data</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default value type for a StreamBlock.</p>
+<p>This organizes the sub-blocks into an array and allows for the subblocks to handle their own values.</p>
+<dl class="class">
+<dt id="altstreamfield.blocks.streamblock.StreamValue.StreamChild">
+<em class="property">class </em><code class="sig-name descname">StreamChild</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamValue.StreamChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends bound block with methods that make sense in the context of
+children of StreamField, but not necessarily elsewhere that BoundBlock
+is used.</p>
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamValue.StreamChild.block_type">
+<em class="property">property </em><code class="sig-name descname">block_type</code><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamValue.StreamChild.block_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the block type of the block.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.blocks.streamblock.StreamValue.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.blocks.streamblock.StreamValue.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert this StreamValue to a JSON representation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-altstreamfield.fields">
+<span id="altstreamfield-fields"></span><h2><cite>altstreamfield.fields</cite><a class="headerlink" href="#module-altstreamfield.fields" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="altstreamfield.fields.AltStreamField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.fields.</code><code class="sig-name descname">AltStreamField</code><span class="sig-paren">(</span><em class="sig-param">block_type</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.AltStreamField" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alternate Django Model Field implementation of a Wagtail StreamField.</p>
+<dl class="method">
+<dt id="altstreamfield.fields.AltStreamField.deconstruct">
+<code class="sig-name descname">deconstruct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.AltStreamField.deconstruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return enough information to recreate the field as a 4-tuple:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The name of the field on the model, if contribute_to_class() has
+been run.</p></li>
+<li><p>The import path of the field, including the class:e.g.
+django.db.models.IntegerField This should be the most portable
+version, so less specific may be better.</p></li>
+<li><p>A list of positional arguments.</p></li>
+<li><p>A dict of keyword arguments.</p></li>
+</ul>
+</div></blockquote>
+<p>Note that the positional or keyword arguments must contain values of
+the following types (including inner values of collection types):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>None, bool, str, int, float, complex, set, frozenset, list, tuple,
+dict</p></li>
+<li><p>UUID</p></li>
+<li><p>datetime.datetime (naive), datetime.date</p></li>
+<li><p>top-level classes, top-level functions - will be referenced by their
+full import path</p></li>
+<li><p>Storage instances - these have their own deconstruct() method</p></li>
+</ul>
+</div></blockquote>
+<p>This is because the values here must be serialized into a text format
+(possibly new Python code, possibly JSON) and these are the only types
+with encoding handlers defined.</p>
+<p>There’s no need to return the exact way the field was instantiated this
+time, just ensure that the resulting field is the same - prefer keyword
+arguments over positional ones, and omit parameters with their default
+values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.fields.AltStreamField.formfield">
+<code class="sig-name descname">formfield</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.AltStreamField.formfield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a django.forms.Field instance for this field.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.fields.AltStreamField.get_prep_value">
+<code class="sig-name descname">get_prep_value</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.AltStreamField.get_prep_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform preliminary non-db specific value checks and conversions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.fields.AltStreamField.to_python">
+<code class="sig-name descname">to_python</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.AltStreamField.to_python" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the input value into the expected Python data type, raising
+django.core.exceptions.ValidationError if the data can’t be converted.
+Return the converted value. Subclasses should override this.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="altstreamfield.fields.AltStreamField.value_to_string">
+<code class="sig-name descname">value_to_string</code><span class="sig-paren">(</span><em class="sig-param">obj</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.AltStreamField.value_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string value of this field from the passed obj.
+This is used by the serialization framework.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.fields.StreamBlockField">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.fields.</code><code class="sig-name descname">StreamBlockField</code><span class="sig-paren">(</span><em class="sig-param">block=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.StreamBlockField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Django Form Field for collecting StreamBlock data.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="altstreamfield.fields.StreamBlockInput">
+<em class="property">class </em><code class="sig-prename descclassname">altstreamfield.fields.</code><code class="sig-name descname">StreamBlockInput</code><span class="sig-paren">(</span><em class="sig-param">block</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#altstreamfield.fields.StreamBlockInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Django Form Widget for collecting StreamBlock data.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="customization.html" class="btn btn-neutral float-left" title="Customization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, David Dorothy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

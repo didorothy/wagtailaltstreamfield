@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation and Usage &mdash; Wagtail Alternate StreamField 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Customization" href="customization.html" />
+    <link rel="prev" title="Wagtail Alternate StreamField" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Wagtail Alternate StreamField
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Wagtail Alternate StreamField</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation and Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation-and-usage">
+<h1>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this headline">¶</a></h1>
+<p>To install use pip:</p>
+<p><cite>pip install wagtailaltstreamfield</cite></p>
+<p>Add “altstreamfield” to your Django Project’s <cite>INSTALLED_APPS</cite> list.</p>
+<p>Create some custom blocks and a <cite>django.db.Model</cite> subclass like the following:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1">#filename: [yourapp]/models.py</span>
+ <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+ <span class="kn">from</span> <span class="nn">wagtail.core.models</span> <span class="kn">import</span> <span class="n">Page</span>
+ <span class="kn">from</span> <span class="nn">wagtail.admin.edit_handlers</span> <span class="kn">import</span> <span class="n">FieldPanel</span><span class="p">,</span> <span class="n">StreamFieldPanel</span>
+
+ <span class="kn">from</span> <span class="nn">altstreamfield.edit_handlers</span> <span class="kn">import</span> <span class="n">AltStreamFieldPanel</span>
+ <span class="kn">from</span> <span class="nn">altstreamfield.fields</span> <span class="kn">import</span> <span class="n">AltStreamField</span>
+
+ <span class="kn">from</span> <span class="nn">altstreamfield.blocks</span> <span class="kn">import</span> <span class="p">(</span>
+     <span class="n">StreamBlock</span><span class="p">,</span>
+     <span class="n">StructBlock</span><span class="p">,</span>
+
+     <span class="n">BooleanField</span><span class="p">,</span>
+     <span class="n">CharField</span><span class="p">,</span>
+     <span class="n">ChoiceField</span><span class="p">,</span>
+     <span class="n">DocumentChooserField</span><span class="p">,</span>
+     <span class="n">ImageChooserField</span><span class="p">,</span>
+     <span class="n">IntegerField</span><span class="p">,</span>
+     <span class="n">RichTextField</span><span class="p">,</span>
+     <span class="n">StreamBlockField</span><span class="p">,</span>
+     <span class="n">TextField</span><span class="p">,</span>
+ <span class="p">)</span>
+
+ <span class="c1"># Create some custom blocks</span>
+ <span class="n">HEADING_TYPE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="s1">&#39;H1&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="s1">&#39;H2&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">,</span> <span class="s1">&#39;H3&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="s1">&#39;h4&#39;</span><span class="p">,</span> <span class="s1">&#39;H4&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="s1">&#39;h5&#39;</span><span class="p">,</span> <span class="s1">&#39;H5&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="s1">&#39;h6&#39;</span><span class="p">,</span> <span class="s1">&#39;H6&#39;</span><span class="p">),</span>
+ <span class="p">)</span>
+
+ <span class="k">class</span> <span class="nc">Heading</span><span class="p">(</span><span class="n">StructBlock</span><span class="p">):</span>
+     <span class="n">heading_type</span> <span class="o">=</span> <span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">HEADING_TYPE_CHOICES</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     <span class="n">text</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+
+     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+         <span class="n">icon</span> <span class="o">=</span> <span class="s1">&#39;title&#39;</span>
+
+
+ <span class="k">class</span> <span class="nc">Paragraph</span><span class="p">(</span><span class="n">StructBlock</span><span class="p">):</span>
+     <span class="n">text</span> <span class="o">=</span> <span class="n">RichTextField</span><span class="p">()</span>
+
+     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+         <span class="n">icon</span> <span class="o">=</span> <span class="s1">&#39;pilcrow&#39;</span>
+
+
+ <span class="k">class</span> <span class="nc">DocumentLink</span><span class="p">(</span><span class="n">StructBlock</span><span class="p">):</span>
+     <span class="n">title</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+     <span class="n">document</span> <span class="o">=</span> <span class="n">DocumentChooserField</span><span class="p">()</span>
+
+     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+         <span class="n">icon</span> <span class="o">=</span> <span class="s1">&#39;doc-empty&#39;</span>
+
+
+ <span class="k">class</span> <span class="nc">SimpleStreamBlock</span><span class="p">(</span><span class="n">StreamBlock</span><span class="p">):</span>
+     <span class="n">heading</span> <span class="o">=</span> <span class="n">Heading</span><span class="p">()</span>
+     <span class="n">paragraph</span> <span class="o">=</span> <span class="n">Paragraph</span><span class="p">()</span>
+     <span class="n">document</span> <span class="o">=</span> <span class="n">DocumentLink</span><span class="p">()</span>
+
+
+ <span class="c1"># Create your models here.</span>
+ <span class="k">class</span> <span class="nc">HomePage</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+     <span class="n">body</span> <span class="o">=</span> <span class="n">AltStreamField</span><span class="p">(</span><span class="n">SimpleStreamBlock</span><span class="p">)</span>
+
+     <span class="n">content_panels</span> <span class="o">=</span> <span class="n">Page</span><span class="o">.</span><span class="n">content_panels</span> <span class="o">+</span> <span class="p">[</span>
+         <span class="n">AltStreamFieldPanel</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="n">classname</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">),</span>
+     <span class="p">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>If you are creating a large number of blocks it is a good idea to separate the blocks into a separate module or modules.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="customization.html" class="btn btn-neutral float-right" title="Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Wagtail Alternate StreamField" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, David Dorothy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
