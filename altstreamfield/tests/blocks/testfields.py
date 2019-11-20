@@ -360,3 +360,14 @@ class TestImageChooserField(TestCase):
     def test_media(self):
         f = ImageChooserField()
         self.assertIsInstance(f.media, Media)
+
+
+class TestPageChooserField(TestCase):
+    def test_model(self):
+        from wagtail.core.models import Page
+        f = PageChooserField()
+        self.assertEqual(f.model, Page)
+
+    def test_media(self):
+        f = PageChooserField()
+        self.assertIsInstance(f.media, Media)
