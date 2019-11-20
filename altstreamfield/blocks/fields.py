@@ -8,6 +8,7 @@ from django.utils.encoding import force_str
 from django.utils.text import capfirst
 from django.utils.translation import ugettext as _
 
+from wagtail.core.models import Page
 from wagtail.documents.models import get_document_model
 from wagtail.images import get_image_model
 
@@ -20,6 +21,7 @@ __all__ = [
     'ImageChooserField',
     'IntegerField',
     'ModelChooserField',
+    'PageChooserField',
     'RichTextField',
     'TextField',
 ]
@@ -415,4 +417,18 @@ class ImageChooserField(ModelChooserField):
             css={
                 'all': []
             }
+        )
+
+class PageChooserField(ModelChooserField):
+    '''Represents a selection of a Wagtail Page.'''
+    @property
+    def model(self):
+        return Page
+
+    @property
+    def media(self):
+        return Media(
+            js=[
+                'wagtailadmin/js/page-chooser-modal.js',
+            ]
         )

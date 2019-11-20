@@ -9,6 +9,7 @@ import DocumentChooserField from "./components/fields/documentchooserfield";
 import Field from "./components/fields/field";
 import ImageChooserField from "./components/fields/imagechooserfield";
 import IntegerField from "./components/fields/integerfield";
+import PageChooserField from "./components/fields/pagechooserfield";
 import RichTextField from "./components/fields/richtextfield";
 import StreamBlockField from "./components/fields/streamblockfield";
 import TextField from "./components/fields/textfield";
@@ -24,6 +25,7 @@ let FIELD_TYPES = {
     CharField,
     ChoiceField,
     DocumentChooserField,
+    PageChooserField,
     ImageChooserField,
     IntegerField,
     RichTextField,

@@ -1,0 +1,244 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageChooserField #error 1`] = `
+<div>
+  <div
+    class="field page_chooser_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test PageChooser Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser blank"
+        >
+          <div
+            class="unchosen"
+          >
+            <button
+              class="button action-choose button-small button-secondary"
+              id="struct-01test"
+              type="button"
+            >
+              Choose 
+              a
+               
+              page
+            </button>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PageChooserField #help_text 1`] = `
+<div>
+  <div
+    class="field page_chooser_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test PageChooser Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser blank"
+        >
+          <div
+            class="unchosen"
+          >
+            <button
+              class="button action-choose button-small button-secondary"
+              id="struct-01test"
+              type="button"
+            >
+              Choose 
+              a
+               
+              page
+            </button>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PageChooserField #label 1`] = `
+<div>
+  <div
+    class="field page_chooser_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test PageChooser Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser blank"
+        >
+          <div
+            class="unchosen"
+          >
+            <button
+              class="button action-choose button-small button-secondary"
+              id="struct-01test"
+              type="button"
+            >
+              Choose 
+              a
+               
+              page
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PageChooserField #minimal 1`] = `
+<div>
+  <div
+    class="field page_chooser_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser blank"
+        >
+          <div
+            class="unchosen"
+          >
+            <button
+              class="button action-choose button-small button-secondary"
+              id="struct-01test"
+              type="button"
+            >
+              Choose 
+              a
+               
+              page
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PageChooserField #required 1`] = `
+<div>
+  <div
+    class="field page_chooser_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test PageChooser Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser"
+        >
+          <div
+            class="chosen"
+          >
+            <span
+              class="title"
+            >
+              Home Page
+            </span>
+            <ul
+              class="actions"
+            >
+              <li>
+                <button
+                  class="button action-choose button-small button-secondary"
+                  type="button"
+                >
+                  Choose another 
+                  page
+                </button>
+              </li>
+              <li>
+                <a
+                  class="edit-link button button-small button-secondary"
+                  href="/pages/1/edit/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Edit this 
+                  page
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
