@@ -206,6 +206,37 @@ class TestCharField(TestCase):
         self.assertEqual(f.get_searchable_content('this is a test'), ['this is a test'])
 
 
+class TestReadOnlyCharField(TestCase):
+    def test_init(self):
+        '''Ensure that we can create the field.'''
+        f = ReadOnlyCharField()
+        self.assertFalse(f.required)
+
+    def test_to_python(self):
+        f = ReadOnlyCharField()
+        self.assertEqual(f.to_python('test'), 'test')
+        self.assertEqual(f.to_python('  some spaces  '), 'some spaces')
+        self.assertEqual(f.to_python(2), '2')
+        self.assertEqual(f.to_python(None), '')
+
+    def test_max_min_validators_are_always_excluded(self):
+        f = ReadOnlyCharField(max_length=10, min_length=2)
+        self.assertEqual(len(f.validators), 1)
+        self.assertIsInstance(f.validators[0], validators.ProhibitNullCharactersValidator)
+
+    def test_args_list(self):
+        f = ReadOnlyCharField(max_length=10, min_length=2)
+        self.assertEqual(
+            set(f.args_list),
+            set([
+                'strip',
+                'name',
+                'label',
+                'help_text',
+            ])
+        )
+
+
 class TestIntegerField(TestCase):
 
     def test_init(self):
