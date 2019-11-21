@@ -12,6 +12,7 @@ import IntegerField from "./components/fields/integerfield";
 import PageChooserField from "./components/fields/pagechooserfield";
 import RichTextField from "./components/fields/richtextfield";
 import StreamBlockField from "./components/fields/streamblockfield";
+import StructBlockField from "./components/fields/structblockfield";
 import TextField from "./components/fields/textfield";
 import StreamBlock from "./components/streamblock";
 import StructBlock from "./components/structblock";
@@ -30,6 +31,7 @@ let FIELD_TYPES = {
     IntegerField,
     RichTextField,
     StreamBlockField,
+    StructBlockField,
     TextField,
 };
 
