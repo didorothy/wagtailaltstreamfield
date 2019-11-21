@@ -22,6 +22,7 @@ __all__ = [
     'IntegerField',
     'ModelChooserField',
     'PageChooserField',
+    'ReadOnlyCharField',
     'RichTextField',
     'TextField',
 ]
@@ -218,6 +219,26 @@ class CharField(Field):
 
     def get_searchable_content(self, value):
         return [force_str(value)]
+
+
+class ReadOnlyCharField(CharField):
+    '''This is a field that never allows a user to set the value.
+
+    This is useful where the value needs to be controlled by code but the user
+    needs to be aware of the value.
+    '''
+    args_list = [
+        item for item in CharField.args_list
+        if item not in ['max_length', 'min_length', 'required']
+    ]
+
+    def __init__(self, max_length=None, min_length=None, strip=True, **kwargs):
+        super().__init__(max_length=None, min_length=None, strip=strip, **kwargs)
+
+    @property
+    def required(self):
+        '''Read only fields should never be required.'''
+        return False
 
 
 class TextField(CharField):
