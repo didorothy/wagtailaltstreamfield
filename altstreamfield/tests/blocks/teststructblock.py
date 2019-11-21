@@ -1,10 +1,12 @@
+import uuid
+
 from django.core import exceptions
 from django.forms.widgets import Media
 from django.test import TestCase
 
 from altstreamfield.blocks.core import Block
 from altstreamfield.blocks.fields import CharField, IntegerField, RichTextField
-from altstreamfield.blocks.structblock import StructValue, StructBlock
+from altstreamfield.blocks.structblock import StructValue, StructBlock, StructBlockField
 
 
 class TestStructValue(TestCase):
@@ -145,3 +147,74 @@ class TestStructBlock(TestCase):
 
         b = TestStructBlock()
         self.assertEqual(b.get_searchable_content({'name': 'John', 'age': '10'}), ['John'])
+
+
+class SimpleStructBlock(StructBlock):
+    name = CharField()
+    value = CharField()
+
+simple_value = {
+    'name': 'Test',
+    'value': 'Some value.'
+}
+
+
+class TestStructBlockField(TestCase):
+    def test_init(self):
+
+        f = StructBlockField(SimpleStructBlock())
+        with self.assertRaises(TypeError):
+            f = StructBlockField(None)
+
+    def test_to_python(self):
+        f = StructBlockField(SimpleStructBlock())
+        value = f.to_python({"value": simple_value})
+        self.assertIsInstance(value, StructValue)
+        self.assertEqual(value['name'], 'Test')
+        self.assertEqual(value['value'], 'Some value.')
+
+        value = f.to_python({})
+        self.assertIsInstance(value, StructValue)
+        self.assertEqual(value.get('name'), '')
+        self.assertEqual(value.get('value'), '')
+
+        value = f.to_python(simple_value)
+        self.assertIsInstance(value, StructValue)
+        self.assertEqual(value['name'], 'Test')
+        self.assertEqual(value['value'], 'Some value.')
+
+        with self.assertRaises(exceptions.ValidationError):
+            value = f.to_python(None)
+
+    def test_to_json(self):
+        f = StructBlockField(SimpleStructBlock())
+        value = f.to_python(simple_value)
+        self.assertEqual(f.to_json(value), {"value": simple_value})
+
+    def test_validate(self):
+        f = StructBlockField(SimpleStructBlock())
+        with self.assertRaises(exceptions.ValidationError):
+            f.validate(f.to_python([]))
+
+        with self.assertRaises(exceptions.ValidationError):
+            f.validate(f.to_python([{
+                "id": str(uuid.uuid4()),
+                "type": "SimpleStructBlock",
+                "value": {"value": ""}
+            }]))
+
+        with self.assertRaises(exceptions.ValidationError):
+            f.validate(None)
+
+        f.validate(f.to_python(simple_value))
+
+    def test_get_args(self):
+        f = StructBlockField(SimpleStructBlock())
+        args = f.get_args()
+        self.assertIn('block', args)
+        self.assertEqual(args['block'], 'SimpleStructBlock')
+
+    def test_get_dependencies(self):
+        block = SimpleStructBlock()
+        f = StructBlockField(block)
+        self.assertEqual(f.get_dependencies(), {'': block})

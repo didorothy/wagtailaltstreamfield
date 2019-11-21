@@ -6,7 +6,7 @@ import { name_to_label } from "../../utils/text";
 import { run_validators } from "../../utils/validation";
 import Field from "./field";
 
-export default class StreamBlockField extends React.Component {
+export default class StructBlockField extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -31,9 +31,9 @@ export default class StreamBlockField extends React.Component {
      */
     _validate() {
         let validators = [];
-        if(this.props.required && this.props.value['value'].length < 1) {
+        /*if(this.props.required && (this.props.value === null || this.props.value === undefined)) {
             return 'This field is required.';
-        }
+        }*/
 
         return run_validators(validators, this.props.value);
     }
@@ -81,7 +81,7 @@ export default class StreamBlockField extends React.Component {
         );
         let label = this.props.label || name_to_label(this.props.name);
         let input_id = this.props.owner_id + this.props.name;
-        let css_classes = "field stream_block_field";
+        let css_classes = "field struct_block_field";
         if(this.props.required) {
             css_classes += " required";
         }
@@ -101,12 +101,12 @@ export default class StreamBlockField extends React.Component {
 }
 
 // Setup the React Context
-StreamBlockField.contextType = FormErrorContext;
+StructBlockField.contextType = FormErrorContext;
 
 // This specifies the default new value.
-StreamBlockField.default = {value: []};
+StructBlockField.default = {value: {}};
 
-StreamBlockField.propTypes = {
+StructBlockField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     block: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
     value: PropTypes.object.isRequired,

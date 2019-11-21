@@ -4,9 +4,17 @@ import json
 
 from django.core.exceptions import ValidationError
 from django.utils.html import format_html, format_html_join
+from django.utils.translation import ugettext as _
 
 from .core import Block, BoundBlock, DeclarativeFieldsMetaclass
+from .fields import Field
 from ..utils import get_class_media
+
+__all__ = [
+    'StructValue',
+    'StructBlock',
+    'StructBlockField',
+]
 
 
 class StructValue(collections.OrderedDict):
@@ -126,3 +134,52 @@ class StructBlock(Block, metaclass=DeclarativeFieldsMetaclass):
         default = {}
         value_class = StructValue
         icon = 'placeholder'
+
+
+class StructBlockField(Field):
+    '''A field that allows for nesting StructBlocks.'''
+    args_list = Field.args_list + [
+        'block',
+    ]
+    default_error_messages = {
+        'error': _('General error...'), # TODO: come up with a better message.
+    }
+
+    def __init__(self, block, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not isinstance(block, StructBlock):
+            raise TypeError('"block" must be of type StructBlock.')
+        self.block = block
+
+    def to_python(self, value):
+        '''Converts the JSON value to an equivalent Python value.'''
+        if hasattr(value, 'get'):
+            if hasattr(value.get('value'), 'get'):
+                return self.block.to_python(value.get('value', {}))
+            else:
+                return self.block.to_python(value)
+        else:
+            raise ValidationError('"value" must be a dict like object.')
+
+    def to_json(self, value):
+        '''Converts the Python value to an equivalent JSON value (a value that can be passed to json.dump).'''
+        return {'value': self.block.to_json(value)}
+
+    def validate(self, value):
+        '''Does basic validation that cannot be done with validators.
+
+        Override this method to perform custom validation.
+        '''
+        if value in self.empty_values and self._required:
+            raise ValidationError(self.error_messages['required'], code='required')
+
+        self.block.clean(value)
+
+    def get_args(self):
+        args = super().get_args()
+        args['block'] = self.block.__class__.__name__
+        return args
+
+    def get_dependencies(self):
+        '''Returns the dependent blocks as a dictionary.'''
+        return {self.name: self.block}

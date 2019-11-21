@@ -1,0 +1,363 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StructBlockField #error 1`] = `
+<div>
+  <div
+    class="field struct_block_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="struct-block"
+          id="{this.props.block.id}"
+        >
+          <div
+            class="field char_field required error"
+          >
+            <label
+              for="undefinedurl"
+            >
+              Url
+            </label>
+            <div
+              class="field-content"
+            >
+              <div
+                class="input"
+              >
+                <input
+                  id="undefinedurl"
+                  placeholder="Url"
+                  type="text"
+                  value=""
+                />
+              </div>
+              
+              <p
+                class="error-message"
+              >
+                This field is required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StructBlockField #help_text 1`] = `
+<div>
+  <div
+    class="field struct_block_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="struct-block"
+          id="{this.props.block.id}"
+        >
+          <div
+            class="field char_field required error"
+          >
+            <label
+              for="undefinedurl"
+            >
+              Url
+            </label>
+            <div
+              class="field-content"
+            >
+              <div
+                class="input"
+              >
+                <input
+                  id="undefinedurl"
+                  placeholder="Url"
+                  type="text"
+                  value=""
+                />
+              </div>
+              
+              <p
+                class="error-message"
+              >
+                This field is required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StructBlockField #label 1`] = `
+<div>
+  <div
+    class="field struct_block_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="struct-block"
+          id="{this.props.block.id}"
+        >
+          <div
+            class="field char_field required error"
+          >
+            <label
+              for="undefinedurl"
+            >
+              Url
+            </label>
+            <div
+              class="field-content"
+            >
+              <div
+                class="input"
+              >
+                <input
+                  id="undefinedurl"
+                  placeholder="Url"
+                  type="text"
+                  value=""
+                />
+              </div>
+              
+              <p
+                class="error-message"
+              >
+                This field is required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StructBlockField #minimal 1`] = `
+<div>
+  <div
+    class="field struct_block_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="struct-block"
+          id="{this.props.block.id}"
+        >
+          <div
+            class="field char_field required error"
+          >
+            <label
+              for="undefinedurl"
+            >
+              Url
+            </label>
+            <div
+              class="field-content"
+            >
+              <div
+                class="input"
+              >
+                <input
+                  id="undefinedurl"
+                  placeholder="Url"
+                  type="text"
+                  value=""
+                />
+              </div>
+              
+              <p
+                class="error-message"
+              >
+                This field is required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StructBlockField #required 1`] = `
+<div>
+  <div
+    class="field struct_block_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="struct-block"
+          id="{this.props.block.id}"
+        >
+          <div
+            class="field char_field required error"
+          >
+            <label
+              for="44c5e004-85b8-4280-9730-2822e4782230url"
+            >
+              Url
+            </label>
+            <div
+              class="field-content"
+            >
+              <div
+                class="input"
+              >
+                <input
+                  id="44c5e004-85b8-4280-9730-2822e4782230url"
+                  placeholder="Url"
+                  type="text"
+                  value=""
+                />
+              </div>
+              
+              <p
+                class="error-message"
+              >
+                This field is required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`StructBlockField #string_block 1`] = `
+<div>
+  <div
+    class="field struct_block_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test StreamBlock Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="struct-block"
+          id="{this.props.block.id}"
+        >
+          <div
+            class="field char_field required error"
+          >
+            <label
+              for="44c5e004-85b8-4280-9730-2822e4782230url"
+            >
+              Url
+            </label>
+            <div
+              class="field-content"
+            >
+              <div
+                class="input"
+              >
+                <input
+                  id="44c5e004-85b8-4280-9730-2822e4782230url"
+                  placeholder="Url"
+                  type="text"
+                  value=""
+                />
+              </div>
+              
+              <p
+                class="error-message"
+              >
+                This field is required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
