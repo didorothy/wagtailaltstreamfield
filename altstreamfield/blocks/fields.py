@@ -35,18 +35,22 @@ class Field:
         'label',
         'required',
         'help_text',
+        'default',
     ]
     empty_values = list(validators.EMPTY_VALUES)
     default_validators = []
     default_error_messages = {
         'required': _('This field is required.'),
     }
+    default_value = None
 
-    def __init__(self, required=True, validators=(), help_text='', error_messages=None, label=None):
+    def __init__(self, required=True, validators=(), help_text='', error_messages=None, label=None, default=None):
         self._required = required
         self._name = ''
         self._label = None
+        self._default = None
         self.help_text = help_text
+        self.default = default
 
         if label is not None:
             self.label = label
@@ -71,6 +75,14 @@ class Field:
         args = {}
         for name in self.args_list:
             args[name] = getattr(self, name)
+
+        if 'default' in args:
+            if args.get('default', None) is None:
+                # do not render a "default" argument if the default value is None.
+                del args['default']
+            else:
+                # we have to convert to JSON to ensure that the output is valid JavaScript
+                args['default'] = self.to_json(args['default'])
         return args
 
     def get_dependencies(self):
@@ -179,6 +191,14 @@ class Field:
     @label.setter
     def label(self, label):
         self._label = label
+
+    @property
+    def default(self):
+        return self._default
+
+    @default.setter
+    def default(self, default):
+        self._default = default
 
     @property
     def required(self):

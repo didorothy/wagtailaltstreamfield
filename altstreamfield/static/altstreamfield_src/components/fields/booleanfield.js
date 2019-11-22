@@ -101,6 +101,7 @@ BooleanField.default = false;
 BooleanField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     value: PropTypes.bool.isRequired,
+    default: PropTypes.bool,
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     help_text: PropTypes.string,

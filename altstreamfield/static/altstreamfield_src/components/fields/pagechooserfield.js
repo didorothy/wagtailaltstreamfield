@@ -150,6 +150,7 @@ PageChooserField.default = null;
 PageChooserField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     value: PropTypes.number,
+    default: PropTypes.number,
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     help_text: PropTypes.string,

@@ -35,6 +35,37 @@ describe("StructBlock", () => {
         cleanup();
     });
 
+    test('#defaults', () => {
+        /* we want to make sure that the defaults are represented properly when they are passed in the fields. */
+        let manager = new FormErrorContext.FormErrorManager();
+        let block = {
+            id: '8d0f0232-07c8-11ea-8d71-362b9e155667',
+            type: 'StructBlock',
+            value: {
+            }
+        };
+        let fields = [{
+            name: "one",
+            field_type: CharField,
+            args: {
+                "name": "one",
+                "label": "One",
+                "required": true,
+                "help_text": "Sample help text.",
+                "strip": true,
+                "min_length": null,
+                "max_length": 255,
+                "default": 'sailor'
+            }
+        }];
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <StructBlock block={block} fields={fields} onChange={() => {}} />
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        expect(container.container.getElementsByTagName('input')[0].value).toEqual('sailor');
+        cleanup();
+    });
+
     test('handle change', () => {
         let manager = new FormErrorContext.FormErrorManager();
         let block = {

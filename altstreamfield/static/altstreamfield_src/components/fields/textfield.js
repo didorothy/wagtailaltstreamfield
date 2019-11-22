@@ -118,6 +118,7 @@ TextField.default = '';
 TextField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
+    default: PropTypes.string,
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     help_text: PropTypes.string,

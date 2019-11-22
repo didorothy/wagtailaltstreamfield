@@ -15,7 +15,7 @@ export default class StructBlock extends React.Component {
             let field_def = this.props.fields[i];
             let args = Object.assign({}, field_def.args);
             args.name = field_def.name
-            args.value = this.props.block.value[field_def.name] || field_def.field_type.default;
+            args.value = this.props.block.value[field_def.name] || field_def.args.default || field_def.field_type.default;
             args.key = field_def.name
             args.onChange = this.handleChange.bind(this);
             args.owner_id = this.props.block.id;
