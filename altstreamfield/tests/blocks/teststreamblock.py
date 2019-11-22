@@ -89,6 +89,13 @@ class TestStreamValue(TestCase):
         }])
         self.assertIsInstance(value[0].block, TestStructBlock)
 
+    def test_get_item_without_dict_value(self):
+        value = StreamValue(TestingStreamBlock(), [{
+            "id": str(uuid.uuid4()),
+            "type": "TestStructBlock",
+            "value": "not a dict"
+        }])
+        self.assertIsInstance(value[0].block, UnknownBlock)
 
     def test_to_json(self):
         value = StreamValue(TestingStreamBlock(), simple_value)

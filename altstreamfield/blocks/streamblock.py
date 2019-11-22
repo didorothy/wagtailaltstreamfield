@@ -64,7 +64,12 @@ class StreamValue(collections.abc.Sequence):
                 value = self.stream_data[i].get('value', {})
 
                 child_block = self._get_block_instance(type_name)
-                value = child_block.to_python(value)
+                try:
+                    value = child_block.to_python(value)
+                except ValidationError:
+                    type_name = 'UnknownBlock'
+                    child_block = self._get_block_instance(type_name)
+                    value = child_block.to_python(value)
 
                 self._bound_blocks[i] = StreamValue.StreamChild(child_block, value, id=block_id)
             elif isinstance(self.stream_data[i], StreamValue.StreamChild):

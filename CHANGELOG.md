@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7
+
+* Allowed `StreamValue` to substitute a block whose `to_python()` function raises a `ValidationError` with an `UnknownBlock`.
+
 ## 0.0.6
 
 * Hardened `StreamValue` so that missing "type" or missing "value" does not cause an exception.
