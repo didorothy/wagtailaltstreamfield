@@ -5,7 +5,7 @@ from django.forms.widgets import Media
 from django.test import TestCase
 from django.utils.html import format_html
 
-from altstreamfield.blocks.core import Block, UnknownBlock
+from altstreamfield.blocks.core import Block, BoundBlock, UnknownBlock
 from altstreamfield.blocks.fields import CharField
 from altstreamfield.blocks.streamblock import StreamBlock, StreamBlockField, StreamBlockValidationError, StreamValue
 from altstreamfield.blocks.structblock import StructBlock
@@ -42,6 +42,18 @@ class TestStreamValue(TestCase):
     def test_can_create(self):
         StreamValue(TestingStreamBlock(), [])
         StreamValue(TestingStreamBlock(), simple_value)
+
+    def test_can_find_block_by_name(self):
+        value = StreamValue(
+            TestingStreamBlock(),
+            [{
+                "id": "2042b810-1d85-41cc-92bb-b056e36f47e9",
+                "type": "test",
+                "value": {"value": "some value"},
+            }]
+        )
+        self.assertIsInstance(value[0], BoundBlock)
+        self.assertIsInstance(value[0].block, TestStructBlock)
 
     def test_get_item(self):
         value = StreamValue(TestingStreamBlock(), simple_value)
@@ -153,6 +165,11 @@ class TestStreamBlock(TestCase):
         self.assertIsInstance(children[0], T2Block)
         self.assertIsInstance(children[1], T3Block)
         self.assertIsInstance(children[2], T1Block)
+
+    def test_named_child_blocks(self):
+        block = TestingStreamBlock()
+        self.assertEqual(len(block.named_blocks), 1)
+        self.assertIn('test', block.named_blocks)
 
     def test_media(self):
         '''Ensure that media of this StreamBlock instance is merged with media of all child_blocks.'''
