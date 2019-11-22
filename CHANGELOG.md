@@ -1,5 +1,9 @@
 # Changelog
 
+## Next Release
+
+* Hardened `StreamValue` so that missing "type" or missing "value" does not cause an exception.
+
 ## 0.0.5
 
 * All `Field`s now accept a label parameter on `__init__()`
