@@ -60,8 +60,8 @@ class StreamValue(collections.abc.Sequence):
         if i not in self._bound_blocks:
             if isinstance(self.stream_data[i], dict):
                 block_id = self.stream_data[i].get('id', uuid.uuid4())
-                type_name = self.stream_data[i]['type']
-                value = self.stream_data[i]['value']
+                type_name = self.stream_data[i].get('type', 'UnknownBlock')
+                value = self.stream_data[i].get('value', {})
 
                 child_block = self._get_block_instance(type_name)
                 value = child_block.to_python(value)

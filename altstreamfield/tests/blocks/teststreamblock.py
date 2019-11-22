@@ -75,6 +75,21 @@ class TestStreamValue(TestCase):
         }])
         self.assertIsInstance(value[0].block, UnknownBlock)
 
+    def test_get_item_with_missing_type(self):
+        value = StreamValue(TestingStreamBlock(), [{
+            "id": str(uuid.uuid4()),
+            "value": {"one": "One", "two": 2}
+        }])
+        self.assertIsInstance(value[0].block, UnknownBlock)
+
+    def test_get_item_with_missing_value(self):
+        value = StreamValue(TestingStreamBlock(), [{
+            "id": str(uuid.uuid4()),
+            "type": "TestStructBlock",
+        }])
+        self.assertIsInstance(value[0].block, TestStructBlock)
+
+
     def test_to_json(self):
         value = StreamValue(TestingStreamBlock(), simple_value)
         self.assertEqual(
