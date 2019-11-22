@@ -219,6 +219,29 @@ describe('StreamBlock', () => {
         cleanup();
     });
 
+    test('#unknown_value', () => {
+        let manager = new FormErrorContext.FormErrorManager();
+        let block_types = {
+            TestStructBlock,
+        };
+        let block_value = {
+            value: [
+                {
+                    id: '6e556490-07cc-11ea-8d71-362b9e155667',
+                    type: 'UnknownBlock',
+                    value: {
+                        'one': 'test value'
+                    }
+                }
+            ]
+        };
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <StreamBlock block={block_value} blockTypes={block_types} onChange={() => {}}/>
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
     test('handleDelete one block', () => {
         let manager = new FormErrorContext.FormErrorManager();
         let block_types = {

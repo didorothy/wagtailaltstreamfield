@@ -17,6 +17,22 @@ import StructBlockField from "./components/fields/structblockfield";
 import TextField from "./components/fields/textfield";
 import StreamBlock from "./components/streamblock";
 import StructBlock from "./components/structblock";
+import UnknownBlock from "./components/unknownblock";
+
+import { template } from "./utils/template";
+import { camel_pascal_to_label, capfirst, name_to_label } from "./utils/text";
+import { run_validators } from "./utils/validation";
+
+import { Validator, ValidationError } from "./validators/interface";
+import { DecimalValidator } from "./validators/decimal";
+import { EmailValidator } from "./validators/email";
+import { IntegerValidator, CommaSeparatedIntegerListValidator } from "./validators/integer";
+import { IPV4Validator, IPV6Validator } from "./validators/ip";
+import { BaseLimitValidator, MaxLengthValidator, MaxValueValidator, MinLengthValidator, MinValueValidator } from "./validators/limits";
+import { ProhibitNullCharacterValidator } from "./validators/prohibitnullcharacter";
+import { SlugValidator, UnicodeSlugValidator } from "./validators/slug";
+import { RegexValidator } from "./validators/regex";
+import { URLValidator } from "./validators/url";
 
 import FormErrorContext from "./context/formerror";
 
@@ -35,6 +51,42 @@ let FIELD_TYPES = {
     StreamBlockField,
     StructBlockField,
     TextField,
+};
+
+let VALIDATORS = {
+    ValidationError,
+    Validator,
+
+    BaseLimitValidator,
+    CommaSeparatedIntegerListValidator,
+    DecimalValidator,
+    EmailValidator,
+    IntegerValidator,
+    IPV4Validator,
+    IPV6Validator,
+    MaxLengthValidator,
+    MaxValueValidator,
+    MinLengthValidator,
+    MinValueValidator,
+    ProhibitNullCharacterValidator,
+    RegexValidator,
+    SlugValidator,
+    UnicodeSlugValidator,
+    URLValidator,
+};
+
+let UTILS = {
+    template: {
+        template
+    },
+    text: {
+        camel_pascal_to_label,
+        capfirst,
+        name_to_label,
+    },
+    validation: {
+        run_validators,
+    }
 };
 
 /**
@@ -98,6 +150,9 @@ window.asf = {
     create_structblock,
     create_streamblock,
     fields: FIELD_TYPES,
+    validators: VALIDATORS,
+    utils: UTILS,
     FormErrorContext,
     Field,
+    UnknownBlock,
 };
