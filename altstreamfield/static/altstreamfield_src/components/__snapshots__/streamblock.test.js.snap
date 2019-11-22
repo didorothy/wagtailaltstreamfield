@@ -393,3 +393,95 @@ exports[`StreamBlock #minimal 1`] = `
   </div>
 </div>
 `;
+
+exports[`StreamBlock #unknown_value 1`] = `
+<div>
+  <div
+    class="stream-block"
+  >
+    <div
+      class="block-container"
+    >
+      <div
+        class="block-container-before"
+      >
+        <div
+          class="stream-menu"
+        >
+          <button
+            class="c-sf-add-button c-sf-add-button--visible"
+            title="Add"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+            >
+              +
+            </i>
+          </button>
+        </div>
+      </div>
+      <div
+        class="block-container-block"
+      >
+        <div
+          class="block-controls"
+        >
+          <h3>
+            <span
+              class="c-sf-block__header__icon"
+            >
+              <i
+                class="icon icon-help"
+              />
+            </span>
+            Unknown Block
+          </h3>
+          <button
+            class="c-sf-block__actions__single"
+            title="Delete"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              class="icon icon-bin"
+            />
+          </button>
+        </div>
+        <div
+          class="block-content"
+        >
+          <div
+            class="raw"
+          >
+            <pre>
+              {
+  "one": "test value"
+}
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="stream-block-append"
+    >
+      <div
+        class="stream-menu"
+      >
+        <button
+          class="c-sf-add-button c-sf-add-button--visible"
+          title="Add"
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+          >
+            +
+          </i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

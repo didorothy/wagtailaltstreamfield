@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnknownBlock #minimal 1`] = `
+<div>
+  <div
+    class="raw"
+  >
+    <pre>
+      {
+  "one": "1",
+  "nest": {
+    "list": [
+      "test",
+      1,
+      1
+    ]
+  }
+}
+    </pre>
+  </div>
+</div>
+`;

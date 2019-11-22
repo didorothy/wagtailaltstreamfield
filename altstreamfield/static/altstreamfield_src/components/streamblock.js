@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import uuid4 from "uuid/v4";
 
 import { camel_pascal_to_label } from "../utils/text";
+import UnknownBlock from "./unknownblock";
 
 export class BlockTypeMenu extends React.Component {
     constructor(props) {
@@ -219,6 +220,29 @@ export default class StreamBlock extends React.Component {
                     },
                     React.createElement(
                         this.props.blockTypes[sub_block.type],
+                        {
+                            block: sub_block,
+                            onChange: this.handleChange.bind(this),
+                        },
+                    )
+                ));
+            } else if(sub_block.type === 'UnknownBlock') {
+                let sub_block = this.props.block.value[i];
+                sub_blocks.push(React.createElement(
+                    BlockContainer,
+                    {
+                        blockTypes: blockTypeArray,
+                        block: sub_block,
+                        key: sub_block.id,
+                        onInsert: this.handleInsertBlock.bind(this),
+                        onDelete: this.handleDeleteBlock.bind(this),
+                        isTop: i == 0,
+                        isBottom: i == this.props.block.value.length - 1,
+                        onMove: this.handleMove.bind(this),
+                        icon: UnknownBlock.icon,
+                    },
+                    React.createElement(
+                        UnknownBlock,
                         {
                             block: sub_block,
                             onChange: this.handleChange.bind(this),
