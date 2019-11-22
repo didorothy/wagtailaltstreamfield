@@ -66,6 +66,12 @@ class TestField(TestCase):
             if key != 'default':
                 self.assertIn(key, args)
 
+    def test_get_args_with_default(self):
+        f = Field(help_text='Some help.', default='test')
+        args = f.get_args()
+        for key in Field.args_list:
+            self.assertIn(key, args)
+
     def test_dependencies(self):
         '''Ensure that dependencies returns a dict.'''
         f = Field()
@@ -424,3 +430,39 @@ class TestPageChooserField(TestCase):
     def test_media(self):
         f = PageChooserField()
         self.assertIsInstance(f.media, Media)
+
+    def test_limit_page_types(self):
+        '''Need to make sure that the PageChooserField can specify a type of page to choose.'''
+        from wagtail.core.models import Page
+        f = PageChooserField(target_model='wagtailcore.Page')
+        self.assertEqual(f.target_model, Page)
+
+    def test_validate(self):
+        from wagtail.core.models import Page
+
+        class TestPage(Page):
+            pass
+
+        p = Page(title='Test')
+
+        field = PageChooserField(target_model='wagtailcore.Page')
+        field.validate(p)
+
+        with self.assertRaises(ValidationError):
+            field = PageChooserField(target_model=TestPage)
+            field.validate(p)
+
+        p = Page.objects.get(id=2) # this is a root page (apparently)
+        field = PageChooserField(target_model='wagtailcore.Page')
+        with self.assertRaises(ValidationError):
+            field.validate(p)
+
+        field = PageChooserField(can_choose_root=True)
+        field.validate(p)
+
+    def test_get_args(self):
+        '''We need to make sure that the target_model is converted to a string that can be recognized by `resolve_model_string()`.'''
+        from wagtail.core.models import Page
+        field = PageChooserField(target_model='wagtailcore.Page')
+        args = field.get_args()
+        self.assertEqual(args['target_model'], 'wagtailcore.Page')

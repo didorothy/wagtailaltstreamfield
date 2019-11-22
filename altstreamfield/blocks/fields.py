@@ -8,7 +8,8 @@ from django.utils.encoding import force_str
 from django.utils.text import capfirst
 from django.utils.translation import ugettext as _
 
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Site
+from wagtail.core.utils import resolve_model_string
 from wagtail.documents.models import get_document_model
 from wagtail.images import get_image_model
 
@@ -465,6 +466,45 @@ class ImageChooserField(ModelChooserField):
 
 class PageChooserField(ModelChooserField):
     '''Represents a selection of a Wagtail Page.'''
+    args_list = ModelChooserField.args_list + [
+        'target_model',
+        'can_choose_root',
+    ]
+    default_error_messages = {
+        'invalid-page': _('This page may not be chosen.'),
+    }
+
+    def __init__(self, target_model=None, can_choose_root=False, **kwargs):
+        super().__init__(**kwargs)
+        self._target_model = None
+        if target_model:
+            self._target_model = target_model
+
+        self.can_choose_root = can_choose_root
+
+    def validate(self, value):
+        super().validate(value)
+
+        if value and isinstance(value, Page):
+            specific = value.specific
+            if self.target_model and not isinstance(specific, self.target_model):
+                raise ValidationError(self.error_messages['invalid-page'], code='invalid-page')
+
+            if not self.can_choose_root and Site.objects.filter(root_page=value).exists():
+                raise ValidationError(self.error_messages['invalid-page'], code='invalid-page')
+
+    def get_args(self):
+        args = super().get_args()
+        if 'target_model' in args and args['target_model']:
+            args['target_model'] = args['target_model']._meta.label
+        return args
+
+    @property
+    def target_model(self):
+        if isinstance(self._target_model, str):
+            return resolve_model_string(self._target_model)
+        return self._target_model
+
     @property
     def model(self):
         return Page
