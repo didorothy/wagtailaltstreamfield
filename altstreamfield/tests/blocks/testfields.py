@@ -30,6 +30,16 @@ class TestField(TestCase):
         self.assertEqual(len(f.validators), 0)
         self.assertEqual(f.help_text, 'testing help')
 
+    def test_init_with_label(self):
+        f = Field(label="Test Field")
+        self.assertEqual(f.label, 'Test Field')
+
+        f = Field()
+        self.assertEqual(f.name, '')
+        self.assertEqual(f.label, '')
+        f.name = 'test'
+        self.assertEqual(f.label, 'Test')
+
     def test_deepcopy(self):
         '''Ensure that all properties that might not be duplicated are duplicated.'''
         f = Field(help_text="Ensuring deep copy works.")

@@ -42,11 +42,14 @@ class Field:
         'required': _('This field is required.'),
     }
 
-    def __init__(self, required=True, validators=(), help_text='', error_messages=None):
+    def __init__(self, required=True, validators=(), help_text='', error_messages=None, label=None):
         self._required = required
         self._name = ''
         self._label = None
         self.help_text = help_text
+
+        if label is not None:
+            self.label = label
 
         messages = {}
         for c in reversed(self.__class__.__mro__):
