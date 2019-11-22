@@ -1,5 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PageChooserField #can_choose_root 1`] = `
+<div>
+  <div
+    class="field page_chooser_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test PageChooser Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser blank"
+        >
+          <div
+            class="unchosen"
+          >
+            <button
+              class="button action-choose button-small button-secondary"
+              id="struct-01test"
+              type="button"
+            >
+              Choose 
+              a
+               
+              page
+            </button>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
 exports[`PageChooserField #error 1`] = `
 <div>
   <div
@@ -229,6 +275,52 @@ exports[`PageChooserField #required 1`] = `
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PageChooserField #target_model 1`] = `
+<div>
+  <div
+    class="field page_chooser_field"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test PageChooser Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="chooser page-chooser blank"
+        >
+          <div
+            class="unchosen"
+          >
+            <button
+              class="button action-choose button-small button-secondary"
+              id="struct-01test"
+              type="button"
+            >
+              Choose 
+              a
+               
+              page
+            </button>
           </div>
         </div>
       </div>

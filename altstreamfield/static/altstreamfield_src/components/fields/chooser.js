@@ -9,6 +9,7 @@ export default class Chooser extends React.Component {
 
         window.ModalWorkflow({
             url: this.props.url,
+            urlParams: this.props.urlParams,
             onload: this.props.modalOnLoadHandlers,
             responses: responses,
         });
@@ -65,4 +66,5 @@ Chooser.propTypes = {
     className: PropTypes.string,
     required: PropTypes.bool,
     onChosen: PropTypes.func.isRequired,
+    urlParams: PropTypes.object,
 }

@@ -65,6 +65,24 @@ describe('PageChooserField', () => {
         cleanup();
     });
 
+    test('#target_model', () => {
+        let manager = new FormErrorContext.FormErrorManager();
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <PageChooserField owner_id="struct-01" value={null} name="test" onChange={() => {}} label="Test PageChooser Field" help_text="Sample help text." target_model="wagtailcore.Page" />
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
+    test('#can_choose_root', () => {
+        let manager = new FormErrorContext.FormErrorManager();
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <PageChooserField owner_id="struct-01" value={null} name="test" onChange={() => {}} label="Test PageChooser Field" help_text="Sample help text." can_choose_root={true} />
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
     test('handle_change', () => {
         let current_value = null;
         let return_id = 3

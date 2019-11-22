@@ -117,6 +117,15 @@ export default class PageChooserField extends React.Component {
             css_classes += " error";
         }
 
+        let urlParams = {};
+        if(this.props.target_model) {
+            urlParams.page_type = this.props.target_model;
+        }
+
+        if(this.props.can_choose_root) {
+            urlParams.can_choose_root = true;
+        }
+
         return <Field
             css_classes={css_classes}
             input_id={input_id}
@@ -126,6 +135,7 @@ export default class PageChooserField extends React.Component {
 
                 <Chooser
                     url={window.chooserUrls.pageChooser}
+                    urlParams={urlParams}
                     modalOnLoadHandlers={window.PAGE_CHOOSER_MODAL_ONLOAD_HANDLERS}
                     chooserType="page"
                     inputId={input_id}
@@ -156,4 +166,6 @@ PageChooserField.propTypes = {
     help_text: PropTypes.string,
     required: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
+    target_model: PropTypes.string,
+    can_choose_root: PropTypes.bool,
 }
