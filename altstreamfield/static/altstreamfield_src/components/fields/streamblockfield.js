@@ -110,6 +110,7 @@ StreamBlockField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     block: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
     value: PropTypes.object.isRequired,
+    default: PropTypes.object,
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     help_text: PropTypes.string,

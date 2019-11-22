@@ -40,6 +40,16 @@ class TestField(TestCase):
         f.name = 'test'
         self.assertEqual(f.label, 'Test')
 
+    def test_init_with_default(self):
+        f = Field()
+        self.assertIsNone(f.default)
+
+        f = Field(default='test')
+        self.assertEqual(f.default, 'test')
+
+        f = Field(default=2)
+        self.assertEqual(f.default, 2)
+
     def test_deepcopy(self):
         '''Ensure that all properties that might not be duplicated are duplicated.'''
         f = Field(help_text="Ensuring deep copy works.")
@@ -53,7 +63,8 @@ class TestField(TestCase):
         f = Field(help_text='Some help.')
         args = f.get_args()
         for key in Field.args_list:
-            self.assertIn(key, args)
+            if key != 'default':
+                self.assertIn(key, args)
 
     def test_dependencies(self):
         '''Ensure that dependencies returns a dict.'''
@@ -243,6 +254,7 @@ class TestReadOnlyCharField(TestCase):
                 'name',
                 'label',
                 'help_text',
+                'default',
             ])
         )
 

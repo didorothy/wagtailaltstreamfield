@@ -125,6 +125,7 @@ IntegerField.default = 0;
 IntegerField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
+    default: PropTypes.number,
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
     help_text: PropTypes.string,

@@ -104,6 +104,7 @@ ChoiceField.default = '';
 ChoiceField.propTypes = {
     owner_id: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
+    default: PropTypes.string,
     name: PropTypes.string.isRequired,
     choices: PropTypes.array.isRequired,
     label: PropTypes.string,

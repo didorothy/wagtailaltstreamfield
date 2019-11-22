@@ -1,5 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`StructBlock #defaults 1`] = `
+<div>
+  <div
+    class="struct-block"
+    id="{this.props.block.id}"
+  >
+    <div
+      class="field char_field required"
+    >
+      <label
+        for="8d0f0232-07c8-11ea-8d71-362b9e155667one"
+      >
+        One
+      </label>
+      <div
+        class="field-content"
+      >
+        <div
+          class="input"
+        >
+          <input
+            id="8d0f0232-07c8-11ea-8d71-362b9e155667one"
+            placeholder="One"
+            type="text"
+            value="sailor"
+          />
+        </div>
+        <p
+          class="help"
+        >
+          Sample help text.
+        </p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`StructBlock #minimal 1`] = `
 <div>
   <div

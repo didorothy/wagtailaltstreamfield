@@ -3,6 +3,7 @@
 ## Next Release
 
 * All `Field`s now accept a label parameter on `__init__()`
+* All `Field`s now accept a default parameter on `__init__()` and pass this value out to the JavaScript if it is set.
 
 ## 0.0.4
 
