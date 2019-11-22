@@ -1,6 +1,6 @@
 # Changelog
 
-## Next Release
+## 0.0.6
 
 * Hardened `StreamValue` so that missing "type" or missing "value" does not cause an exception.
 
