@@ -80,6 +80,8 @@ class StreamValue(collections.abc.Sequence):
         '''
         if block_type in self.stream_block.child_blocks:
             return self.stream_block.child_blocks[block_type]
+        elif block_type in self.stream_block.named_blocks:
+            return self.stream_block.named_blocks[block_type]
         else:
             return UnknownBlock()
 
@@ -138,6 +140,7 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.child_blocks = self.base_blocks.copy()
+        self.named_blocks = {block.name: block for block in self.child_blocks.values()}
         self.dependencies = [block.__class__ for block in self.child_blocks.values()]
 
     def get_default(self):
