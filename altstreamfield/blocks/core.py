@@ -225,7 +225,7 @@ class Block(metaclass=BaseBlock):
 
         for block in self.child_blocks.values():
             if block.__class__ not in rendered_blocks:
-                pre_requisites.append(block.render_edit_js())
+                pre_requisites.append(block.render_edit_js(rendered_blocks))
                 rendered_blocks.add(block.__class__)
 
         return "\n".join(pre_requisites)

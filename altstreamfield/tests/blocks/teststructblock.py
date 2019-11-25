@@ -153,6 +153,10 @@ class SimpleStructBlock(StructBlock):
     name = CharField()
     value = CharField()
 
+    class Media:
+        js = ['testing.js']
+
+
 simple_value = {
     'name': 'Test',
     'value': 'Some value.'
@@ -218,3 +222,8 @@ class TestStructBlockField(TestCase):
         block = SimpleStructBlock()
         f = StructBlockField(block)
         self.assertEqual(f.get_dependencies(), {'': block})
+
+    def test_media(self):
+        '''Ensure that the field collects the media from the block it contains.'''
+        f = StructBlockField(SimpleStructBlock())
+        self.assertIn('testing.js', f.media._js)

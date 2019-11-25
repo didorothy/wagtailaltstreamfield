@@ -104,6 +104,9 @@ class StructBlock(Block, metaclass=DeclarativeFieldsMetaclass):
 
     def render_edit_js(self, rendered_blocks=None):
         '''Override this method do render custom JavaScript needed for editing this type of block.'''
+        if rendered_blocks is None:
+            rendered_blocks = set()
+
         fields = []
         for name, field in self.fields.items():
             fields.append(json.dumps({
@@ -179,6 +182,10 @@ class StructBlockField(Field):
         args = super().get_args()
         args['block'] = self.block.__class__.__name__
         return args
+
+    @property
+    def media(self):
+        return self.block.media
 
     def get_dependencies(self):
         '''Returns the dependent blocks as a dictionary.'''

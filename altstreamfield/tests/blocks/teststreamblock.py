@@ -28,6 +28,9 @@ class TestStructBlock(StructBlock):
 class TestingStreamBlock(StreamBlock):
     test = TestStructBlock()
 
+    class Media:
+        js = ['testing.js']
+
 
 simple_value = [
     {
@@ -95,7 +98,7 @@ class TestStreamValue(TestCase):
             "type": "TestStructBlock",
             "value": "not a dict"
         }])
-        self.assertIsInstance(value[0].block, UnknownBlock)
+        self.assertIsInstance(value[0].block, TestStructBlock)
 
     def test_to_json(self):
         value = StreamValue(TestingStreamBlock(), simple_value)
@@ -471,3 +474,9 @@ class TestStreamBlockField(TestCase):
         block = TestingStreamBlock()
         f = StreamBlockField(block)
         self.assertEqual(f.get_dependencies(), {'': block})
+
+    def test_media(self):
+        '''Ensure that the field collects the media the block it contains.'''
+        block = TestingStreamBlock()
+        f = StreamBlockField(block)
+        self.assertIn('testing.js', f.media._js)

@@ -67,9 +67,8 @@ class StreamValue(collections.abc.Sequence):
                 try:
                     value = child_block.to_python(value)
                 except ValidationError:
-                    type_name = 'UnknownBlock'
-                    child_block = self._get_block_instance(type_name)
-                    value = child_block.to_python(value)
+                    # if we get a validation error here then we should wipe out the data and try to preserve the field as much as possible.
+                    value = child_block.to_python({})
 
                 self._bound_blocks[i] = StreamValue.StreamChild(child_block, value, id=block_id)
             elif isinstance(self.stream_data[i], StreamValue.StreamChild):
@@ -257,6 +256,9 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
         )
 
     def render_edit_js(self, rendered_blocks=None):
+        if rendered_blocks is None:
+            rendered_blocks = set()
+
         return '{}\nvar {} = asf.create_streamblock("{}", {{ {} }});\n{}.icon = "{}";\n'.format(
             self.render_edit_js_prerequisites(rendered_blocks),
             self.__class__.__name__,
@@ -333,6 +335,10 @@ class StreamBlockField(Field):
         args = super().get_args()
         args['block'] = self.block.__class__.__name__
         return args
+
+    @property
+    def media(self):
+        return self.block.media
 
     def get_dependencies(self):
         '''Returns the dependent blocks as a dictionary.'''

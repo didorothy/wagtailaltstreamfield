@@ -114,6 +114,10 @@ export default class RichTextField extends React.Component {
                 icon: <Icon name="doc-empty"/>,
             }
         ];
+        let value = this.props.value;
+        //if(typeof value === 'string') {
+        //    value = window.DraftJS.convertFromHTML(value).contentBlocks;
+        //}
 
         return <Field
             css_classes={css_classes}
@@ -123,7 +127,7 @@ export default class RichTextField extends React.Component {
             error={this.state.error ? this.state.error_message : ''}>
 
                 <DraftailEditor
-                    rawContentState={this.props.value || null}
+                    rawContentState={value || null}
                     onSave={this.handleChange}
                     blockTypes={[
                         {type: BLOCK_TYPE.UNORDERED_LIST_ITEM},
