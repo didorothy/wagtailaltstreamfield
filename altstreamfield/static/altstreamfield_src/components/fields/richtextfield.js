@@ -115,9 +115,19 @@ export default class RichTextField extends React.Component {
             }
         ];
         let value = this.props.value;
-        //if(typeof value === 'string') {
-        //    value = window.DraftJS.convertFromHTML(value).contentBlocks;
-        //}
+        if(typeof value === 'string') {
+            console.log(value);
+            try {
+                value = window.DraftJS.convertFromHTML(value);
+                if(value.contentBlocks) {
+                    value.blocks = value.contentBlocks.map(item => item);
+                } else {
+                    value = null;
+                }
+            } catch {
+                value = null;
+            }
+        }
 
         return <Field
             css_classes={css_classes}

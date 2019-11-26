@@ -57,6 +57,7 @@ class MockDraftailEditor extends React.Component {
 
 describe('RichTextField', () => {
     let draftail_orig;
+    let draftjs_orig;
     beforeEach(() => {
         draftail_orig = window.Draftail;
         window.Draftail = {
@@ -73,10 +74,32 @@ describe('RichTextField', () => {
                 STRIKETHROUGH: { type: 'strike' },
             },
         }
+        draftjs_orig = window.DraftJS;
+        window.DraftJS = {
+            'convertFromHTML': function(value) {
+                if(value) {
+                    return {
+                        contentBlocks: [{
+                            "key":"6hdd7",
+                            "text": value.replace(/<[^>]+>/g, ''),
+                            "type":"unstyled",
+                            "depth":0,
+                            "inlineStyleRanges":[],
+                            "entityRanges":[],
+                            "data":{}
+                        }],
+                        entityMap: {}
+                    };
+                } else {
+                    return {};
+                }
+            }
+        }
     });
 
     afterEach(() => {
         window.Draftail = draftail_orig;
+        window.DraftJS = draftjs_orig;
     });
 
     test('#minimal', () => {
@@ -119,6 +142,34 @@ describe('RichTextField', () => {
         let manager = new FormErrorContext.FormErrorManager();
         let container = render(<FormErrorContext.Provider value={manager}>
             <RichTextField owner_id="struct-01" value={null} name="test" onChange={() => {}} label="Test RichText Field" help_text="Sample help text." required={true} />
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
+    test('#string', () => {
+        let manager = new FormErrorContext.FormErrorManager();
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <RichTextField owner_id="struct-01" value="wow" name="test" onChange={() => {}} label="Test RichText Field" help_text="Sample help text." required={true} />
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
+    test('#string_empty', () => {
+        let manager = new FormErrorContext.FormErrorManager();
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <RichTextField owner_id="struct-01" value="" name="test" onChange={() => {}} label="Test RichText Field" help_text="Sample help text." required={true} />
+        </FormErrorContext.Provider>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
+    test('#string_exception', () => {
+        window.DraftJS.convertFromHTML = () => { throw Error("for testing.") };
+        let manager = new FormErrorContext.FormErrorManager();
+        let container = render(<FormErrorContext.Provider value={manager}>
+            <RichTextField owner_id="struct-01" value="" name="test" onChange={() => {}} label="Test RichText Field" help_text="Sample help text." required={true} />
         </FormErrorContext.Provider>);
         expect(container.container).toMatchSnapshot();
         cleanup();

@@ -54,6 +54,8 @@ class StreamValue(collections.abc.Sequence):
         self.stream_block = stream_block
         self.stream_data = stream_data
         self._bound_blocks = {}
+        if not isinstance(self.stream_data, (list, tuple)):
+            self.stream_data = [self.stream_data]
 
     def __getitem__(self, i):
         '''Retrieve a single BoundBlock from this StreamValue's collection of BoundBlocks.'''
