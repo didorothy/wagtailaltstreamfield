@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import BooleanField from "./components/fields/booleanfield";
 import CharField from "./components/fields/charfield";
 import ChoiceField from "./components/fields/choicefield";
+import Chooser from "./components/fields/chooser";
 import DocumentChooserField from "./components/fields/documentchooserfield";
 import Field from "./components/fields/field";
 import ImageChooserField from "./components/fields/imagechooserfield";
@@ -154,5 +155,6 @@ window.asf = {
     utils: UTILS,
     FormErrorContext,
     Field,
+    Chooser,
     UnknownBlock,
 };

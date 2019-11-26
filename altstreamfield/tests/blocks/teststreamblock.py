@@ -28,6 +28,9 @@ class TestStructBlock(StructBlock):
 class TestingStreamBlock(StreamBlock):
     test = TestStructBlock()
 
+    class Media:
+        js = ['testing.js']
+
 
 simple_value = [
     {
@@ -42,6 +45,7 @@ class TestStreamValue(TestCase):
     def test_can_create(self):
         StreamValue(TestingStreamBlock(), [])
         StreamValue(TestingStreamBlock(), simple_value)
+        StreamValue(TestingStreamBlock(), simple_value[0])
 
     def test_can_find_block_by_name(self):
         value = StreamValue(
@@ -60,6 +64,12 @@ class TestStreamValue(TestCase):
         first_item = value[0]
         self.assertIsInstance(first_item, StreamValue.StreamChild)
         self.assertEqual(first_item.id, simple_value[0]['id'])
+
+    def test_get_item_when_streamchild(self):
+        block = TestStructBlock()
+        child = StreamValue.StreamChild(block, block.to_python({'value': {"value": "some value"}}), id="2042b810-1d85-41cc-92bb-b056e36f47e9")
+        value = StreamValue(TestingStreamBlock(), [child])
+        self.assertIs(value[0], child)
 
     def test_get_item_bad_data(self):
         '''If we have some bad data in the raw value then we need to throw an error.'''
@@ -89,6 +99,13 @@ class TestStreamValue(TestCase):
         }])
         self.assertIsInstance(value[0].block, TestStructBlock)
 
+    def test_get_item_without_dict_value(self):
+        value = StreamValue(TestingStreamBlock(), [{
+            "id": str(uuid.uuid4()),
+            "type": "TestStructBlock",
+            "value": "not a dict"
+        }])
+        self.assertIsInstance(value[0].block, TestStructBlock)
 
     def test_to_json(self):
         value = StreamValue(TestingStreamBlock(), simple_value)
@@ -440,19 +457,19 @@ class TestStreamBlockField(TestCase):
     def test_validate(self):
         f = StreamBlockField(TestingStreamBlock())
         with self.assertRaises(ValidationError):
-            f.validate(f.to_python([]))
+            f.validate([])
 
         with self.assertRaises(ValidationError):
-            f.validate(f.to_python([{
+            f.validate([{
                 "id": str(uuid.uuid4()),
                 "type": "TestStructBlock",
                 "value": {"value": ""}
-            }]))
+            }])
 
         with self.assertRaises(ValidationError):
             f.validate(None)
 
-        f.validate(f.to_python(simple_value))
+        f.validate(simple_value)
 
     def test_get_args(self):
         f = StreamBlockField(TestingStreamBlock())
@@ -464,3 +481,9 @@ class TestStreamBlockField(TestCase):
         block = TestingStreamBlock()
         f = StreamBlockField(block)
         self.assertEqual(f.get_dependencies(), {'': block})
+
+    def test_media(self):
+        '''Ensure that the field collects the media the block it contains.'''
+        block = TestingStreamBlock()
+        f = StreamBlockField(block)
+        self.assertIn('testing.js', f.media._js)

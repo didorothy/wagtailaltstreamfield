@@ -207,3 +207,137 @@ exports[`RichTextField #required 1`] = `
   </div>
 </div>
 `;
+
+exports[`RichTextField #string 1`] = `
+<div>
+  <div
+    class="field text_field required"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test RichText Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="mock-draftail"
+        >
+          <div>
+            {"contentBlocks":[{"key":"6hdd7","text":"wow","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{},"blocks":[{"key":"6hdd7","text":"wow","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}
+          </div>
+          <input
+            type="text"
+            value=""
+          />
+          <button>
+            Save
+          </button>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RichTextField #string_empty 1`] = `
+<div>
+  <div
+    class="field text_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test RichText Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="mock-draftail"
+        >
+          <div>
+            null
+          </div>
+          <input
+            type="text"
+            value=""
+          />
+          <button>
+            Save
+          </button>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RichTextField #string_exception 1`] = `
+<div>
+  <div
+    class="field text_field required error"
+  >
+    <label
+      for="struct-01test"
+    >
+      Test RichText Field
+    </label>
+    <div
+      class="field-content"
+    >
+      <div
+        class="input"
+      >
+        <div
+          class="mock-draftail"
+        >
+          <div>
+            null
+          </div>
+          <input
+            type="text"
+            value=""
+          />
+          <button>
+            Save
+          </button>
+        </div>
+      </div>
+      <p
+        class="help"
+      >
+        Sample help text.
+      </p>
+      <p
+        class="error-message"
+      >
+        This field is required.
+      </p>
+    </div>
+  </div>
+</div>
+`;
