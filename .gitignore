@@ -6,4 +6,5 @@ dist/
 htmlcov/
 node_modules/
 docs/_build/
+altstreamfield/static/altstreamfield/
 .coverage

@@ -1,6 +1,6 @@
 # Changelog
 
-## Next Release
+## 0.0.8
 
 * Corrected issues with duplicate JavaScript being rendered for each block.
 * Corrected missing media from `StructBlockField` and `StreamBlockField`
