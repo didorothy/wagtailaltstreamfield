@@ -52,6 +52,7 @@ Create some custom blocks and a `wagtail.core.models.Page` subclass like the fol
 
         class Meta:
             icon = 'title'
+            group = 'Content'
 
 
     class Paragraph(StructBlock):
@@ -59,6 +60,7 @@ Create some custom blocks and a `wagtail.core.models.Page` subclass like the fol
 
         class Meta:
             icon = 'pilcrow'
+            group = 'Content'
 
 
     class DocumentLink(StructBlock):
@@ -67,6 +69,8 @@ Create some custom blocks and a `wagtail.core.models.Page` subclass like the fol
 
         class Meta:
             icon = 'doc-empty'
+            label = 'Document Link'
+            group = 'Link'
 
 
     class SimpleStreamBlock(StreamBlock):
@@ -84,3 +88,5 @@ Create some custom blocks and a `wagtail.core.models.Page` subclass like the fol
         ]
 
 If you are creating a large number of blocks it is a good idea to separate the blocks into a separate module or modules.
+
+During editing in the Wagtail Admin the buttons to add blocks to the SimpleStreamBlock will be grouped by any `Meta.group` values and will be sorted alphabetically by either `Meta.label` or `self.__class__.__name__`.
