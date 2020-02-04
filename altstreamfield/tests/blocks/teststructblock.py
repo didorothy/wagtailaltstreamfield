@@ -130,13 +130,52 @@ class TestStructBlock(TestCase):
 
     def test_render_edit_js(self):
         b = StructBlock()
-        self.assertEqual(b.render_edit_js(), '\nvar StructBlock = asf.create_structblock("StructBlock", []);\nStructBlock.icon = "placeholder";\n')
+        lines = b.render_edit_js().split('\n')
+        self.assertEqual(lines[0], '')
+        self.assertEqual(lines[1], 'var StructBlock = asf.create_structblock("StructBlock", []);')
+        self.assertEqual(lines[2], 'StructBlock.icon = "placeholder";')
+        self.assertEqual(lines[3], 'StructBlock.group = "";')
 
         class TestStructBlock(StructBlock):
             name = CharField()
 
         b = TestStructBlock()
-        self.assertEqual(b.render_edit_js(), '\nvar TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "name", "field_type": "CharField", "args": {"name": "name", "label": "Name", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);\nTestStructBlock.icon = "placeholder";\n')
+        lines = b.render_edit_js().split('\n')
+        self.assertEqual(lines[0], '')
+        self.assertEqual(lines[1], 'var TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "name", "field_type": "CharField", "args": {"name": "name", "label": "Name", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);')
+        self.assertEqual(lines[2], 'TestStructBlock.icon = "placeholder";')
+        self.assertEqual(lines[3], 'TestStructBlock.group = "";')
+
+    def test_render_edit_js_with_label(self):
+        class TestStructBlock(StructBlock):
+            name = CharField()
+
+            class Meta:
+                icon = 'testing'
+                label = "Test Struct Block"
+
+        b = TestStructBlock()
+        lines = b.render_edit_js().split('\n')
+        self.assertEqual(lines[0], '')
+        self.assertEqual(lines[1], 'var TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "name", "field_type": "CharField", "args": {"name": "name", "label": "Name", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);')
+        self.assertEqual(lines[2], 'TestStructBlock.icon = "testing";')
+        self.assertEqual(lines[3], 'TestStructBlock.group = "";')
+        self.assertEqual(lines[4], 'TestStructBlock.label = "Test Struct Block";')
+
+    def test_render_edit_js_with_group(self):
+        class TestStructBlock(StructBlock):
+            name = CharField()
+
+            class Meta:
+                icon = 'testing'
+                group = "Test"
+
+        b = TestStructBlock()
+        lines = b.render_edit_js().split('\n')
+        self.assertEqual(lines[0], '')
+        self.assertEqual(lines[1], 'var TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "name", "field_type": "CharField", "args": {"name": "name", "label": "Name", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);')
+        self.assertEqual(lines[2], 'TestStructBlock.icon = "testing";')
+        self.assertEqual(lines[3], 'TestStructBlock.group = "Test";')
 
     def test_get_searchable_content(self):
         b = StructBlock()

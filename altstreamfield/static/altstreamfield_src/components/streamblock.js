@@ -24,31 +24,55 @@ export class BlockTypeMenu extends React.Component {
 
     render() {
         let self = this;
-        let options = [];
+        let options = {};
+        let groups = [];
+        let block_types = [...this.props.blockTypes];
+        block_types.sort((a,b) => ((a.label || a.type) < (b.label || b.type) ? -1 : ((a.label || a.type) < (b.label || b.type) ? 1 : 0)));
         for(let i = 0; i < this.props.blockTypes.length; ++i) {
             let block_type = this.props.blockTypes[i];
             let css_classes = "c-sf-button action-add-block" + block_type.icon
             let icon_css_classes = "icon icon-" + block_type.icon;
-            options.push(<li key={block_type.type}>
-                <button type="button" className={css_classes} title={block_type.type} onClick={(evt) => { self.handleChosen(evt, block_type); }}>
+            let block_label = block_type.label || block_type.type;
+            let group = block_type.group || '';
+
+            if(options[group] === undefined) {
+                groups.push(group);
+                options[group] = []
+            }
+
+            options[group].push(
+                <button key={block_type.type} type="button" className={css_classes} title={block_type.type} onClick={(evt) => { self.handleChosen(evt, block_type); }}>
                     <span className="c-sf-button__icon">
                         <i className={icon_css_classes}></i>
                     </span>
-                    <span className="c-sf-button__label">{block_type.type}</span>
+                    <span className="c-sf-button__label">{block_label}</span>
                 </button>
-            </li>)
+            );
+        }
+        groups.sort();
+        let listings = [];
+        for(var i = 0; i < groups.length; ++i) {
+            if(groups[i]) {
+                listings.push(<h4 className="c-sf-panel__group_title">{groups[i]}</h4>);
+            }
+
+            listings.push(
+                <div className="add-panel-grid">
+                    {options[groups[i]]}
+                </div>
+            );
         }
         let button_classes = "c-sf-add-button c-sf-add-button--visible";
         if(this.state.visible) {
             button_classes += " c-sf-add-button--close";
         }
-        return <div className="stream-menu">
+        return <div className="stream-menu c-sf-container">
             <button type="button" title="Add" className={button_classes} onClick={this.toggleMenu.bind(this)}>
                 <i aria-hidden="true">+</i>
             </button>
-            {this.state.visible && <ul>
-                {options}
-            </ul>}
+            {this.state.visible && <div className="stream-menu-add-panel">
+                {listings}
+            </div>}
         </div>
     }
 }

@@ -261,14 +261,24 @@ class StreamBlock(Block, metaclass=DeclarativeSubBlocksMetaclass):
         if rendered_blocks is None:
             rendered_blocks = set()
 
-        return '{}\nvar {} = asf.create_streamblock("{}", {{ {} }});\n{}.icon = "{}";\n'.format(
+        definition = [
             self.render_edit_js_prerequisites(rendered_blocks),
-            self.__class__.__name__,
-            self.__class__.__name__,
-            ", ".join(['"{0}": {0}'.format(block.__class__.__name__) for block in self.child_blocks.values()]),
-            self.__class__.__name__,
-            self.meta.icon
-        )
+            'var {cls_name} = asf.create_streamblock("{cls_name}", {{ {child_blocks} }});'.format(
+                cls_name=self.__class__.__name__,
+                child_blocks=", ".join(['"{0}": {0}'.format(block.__class__.__name__) for block in self.child_blocks.values()])
+            ),
+            '{cls_name}.icon = "{meta_icon}";'.format(cls_name=self.__class__.__name__, meta_icon=self.meta.icon)
+        ]
+
+        if hasattr(self.meta, 'group') and self.meta.group:
+            definition.append('{cls_name}.group = "{meta_group}";'.format(cls_name=self.__class__.__name__, meta_group=self.meta.group))
+        else:
+            definition.append('{cls_name}.group = "";'.format(cls_name=self.__class__.__name__))
+
+        if hasattr(self.meta, 'label') and self.meta.label is not None:
+            definition.append('{cls_name}.label = "{meta_label}";'.format(cls_name=self.__class__.__name__, meta_label=self.meta.label))
+
+        return '\n'.join(definition)
 
     def get_searchable_content(self, value):
         '''Gets all searchable content from the child blocks in this StreamBlock.'''
