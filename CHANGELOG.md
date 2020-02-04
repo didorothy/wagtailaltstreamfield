@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.9
+
+* Added the abilit to specify `label` and `group` on `StructBlock` and `StreamBlock`.
+* Buttons in the admin interface for adding a block to a `StreamBlock` are now sorted by `label` or class name.
+
 ## 0.0.8
 
 * Corrected issues with duplicate JavaScript being rendered for each block.
