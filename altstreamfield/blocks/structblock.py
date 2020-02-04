@@ -115,14 +115,24 @@ class StructBlock(Block, metaclass=DeclarativeFieldsMetaclass):
                 "args": field.get_args(),
             }))
 
-        return '{}\nvar {} = asf.create_structblock("{}", [{}]);\n{}.icon = "{}";\n'.format(
+        definition = [
             self.render_edit_js_prerequisites(rendered_blocks),
-            self.__class__.__name__,
-            self.__class__.__name__,
-            ",".join(fields),
-            self.__class__.__name__,
-            self.meta.icon
-        )
+            'var {cls_name} = asf.create_structblock("{cls_name}", [{fields}]);'.format(
+                cls_name=self.__class__.__name__,
+                fields=",".join(fields),
+            ),
+            '{cls_name}.icon = "{meta_icon}";'.format(cls_name=self.__class__.__name__, meta_icon=self.meta.icon)
+        ]
+
+        if hasattr(self.meta, 'group') and self.meta.group:
+            definition.append('{cls_name}.group = "{meta_group}";'.format(cls_name=self.__class__.__name__, meta_group=self.meta.group))
+        else:
+            definition.append('{cls_name}.group = "";'.format(cls_name=self.__class__.__name__))
+
+        if hasattr(self.meta, 'label') and self.meta.label is not None:
+            definition.append('{cls_name}.label = "{meta_label}";'.format(cls_name=self.__class__.__name__, meta_label=self.meta.label))
+
+        return '\n'.join(definition)
 
     def get_searchable_content(self, value):
         content = []

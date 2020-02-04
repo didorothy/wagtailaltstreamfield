@@ -23,7 +23,7 @@ exports[`StreamBlockField #error 1`] = `
             class="stream-block-append"
           >
             <div
-              class="stream-menu"
+              class="stream-menu c-sf-container"
             >
               <button
                 class="c-sf-add-button c-sf-add-button--visible"
@@ -78,7 +78,7 @@ exports[`StreamBlockField #help_text 1`] = `
             class="stream-block-append"
           >
             <div
-              class="stream-menu"
+              class="stream-menu c-sf-container"
             >
               <button
                 class="c-sf-add-button c-sf-add-button--visible"
@@ -129,7 +129,7 @@ exports[`StreamBlockField #label 1`] = `
             class="stream-block-append"
           >
             <div
-              class="stream-menu"
+              class="stream-menu c-sf-container"
             >
               <button
                 class="c-sf-add-button c-sf-add-button--visible"
@@ -175,7 +175,7 @@ exports[`StreamBlockField #minimal 1`] = `
             class="stream-block-append"
           >
             <div
-              class="stream-menu"
+              class="stream-menu c-sf-container"
             >
               <button
                 class="c-sf-add-button c-sf-add-button--visible"
@@ -224,7 +224,7 @@ exports[`StreamBlockField #required 1`] = `
               class="block-container-before"
             >
               <div
-                class="stream-menu"
+                class="stream-menu c-sf-container"
               >
                 <button
                   class="c-sf-add-button c-sf-add-button--visible"
@@ -310,7 +310,7 @@ exports[`StreamBlockField #required 1`] = `
             class="stream-block-append"
           >
             <div
-              class="stream-menu"
+              class="stream-menu c-sf-container"
             >
               <button
                 class="c-sf-add-button c-sf-add-button--visible"
@@ -364,7 +364,7 @@ exports[`StreamBlockField #string_block 1`] = `
               class="block-container-before"
             >
               <div
-                class="stream-menu"
+                class="stream-menu c-sf-container"
               >
                 <button
                   class="c-sf-add-button c-sf-add-button--visible"
@@ -450,7 +450,7 @@ exports[`StreamBlockField #string_block 1`] = `
             class="stream-block-append"
           >
             <div
-              class="stream-menu"
+              class="stream-menu c-sf-container"
             >
               <button
                 class="c-sf-add-button c-sf-add-button--visible"

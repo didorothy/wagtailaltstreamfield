@@ -18,7 +18,7 @@ exports[`app.StreamField #minimal 1`] = `
         class="stream-block-append"
       >
         <div
-          class="stream-menu"
+          class="stream-menu c-sf-container"
         >
           <button
             class="c-sf-add-button c-sf-add-button--visible"

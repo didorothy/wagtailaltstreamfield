@@ -409,8 +409,53 @@ class TestStreamBlock(TestCase):
         lines = [x for x in script.split('\n') if x != '']
         self.assertEqual(lines[0], 'var TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "value", "field_type": "CharField", "args": {"name": "value", "label": "Value", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);')
         self.assertEqual(lines[1], 'TestStructBlock.icon = "placeholder";')
-        self.assertEqual(lines[2], 'var TestingStreamBlock = asf.create_streamblock("TestingStreamBlock", { "TestStructBlock": TestStructBlock });')
-        self.assertEqual(lines[3], 'TestingStreamBlock.icon = "placeholder";')
+        self.assertEqual(lines[2], 'TestStructBlock.group = "";')
+        self.assertEqual(lines[3], 'var TestingStreamBlock = asf.create_streamblock("TestingStreamBlock", { "TestStructBlock": TestStructBlock });')
+        self.assertEqual(lines[4], 'TestingStreamBlock.icon = "placeholder";')
+        self.assertEqual(lines[5], 'TestingStreamBlock.group = "";')
+
+    def test_render_edit_js_with_label(self):
+        class LabelTestingStreamBlock(StreamBlock):
+            test = TestStructBlock()
+
+            class Media:
+                js = ['testing.js']
+
+            class Meta:
+                label = 'Label Test'
+
+        block = LabelTestingStreamBlock()
+        script = block.render_edit_js()
+        lines = [x for x in script.split('\n') if x != '']
+        self.assertEqual(lines[0], 'var TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "value", "field_type": "CharField", "args": {"name": "value", "label": "Value", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);')
+        self.assertEqual(lines[1], 'TestStructBlock.icon = "placeholder";')
+        self.assertEqual(lines[2], 'TestStructBlock.group = "";')
+        self.assertEqual(lines[3], 'var LabelTestingStreamBlock = asf.create_streamblock("LabelTestingStreamBlock", { "TestStructBlock": TestStructBlock });')
+        self.assertEqual(lines[4], 'LabelTestingStreamBlock.icon = "placeholder";')
+        self.assertEqual(lines[5], 'LabelTestingStreamBlock.group = "";')
+        self.assertEqual(lines[6], 'LabelTestingStreamBlock.label = "Label Test";')
+
+    def test_render_edit_js_with_group(self):
+        class GroupTestingStreamBlock(StreamBlock):
+            test = TestStructBlock()
+
+            class Media:
+                js = ['testing.js']
+
+            class Meta:
+                group = 'Test'
+
+        block = GroupTestingStreamBlock()
+        script = block.render_edit_js()
+        lines = [x for x in script.split('\n') if x != '']
+        self.assertEqual(lines[0], 'var TestStructBlock = asf.create_structblock("TestStructBlock", [{"name": "value", "field_type": "CharField", "args": {"name": "value", "label": "Value", "required": true, "help_text": "", "strip": true, "min_length": null, "max_length": null}}]);')
+        self.assertEqual(lines[1], 'TestStructBlock.icon = "placeholder";')
+        self.assertEqual(lines[2], 'TestStructBlock.group = "";')
+        self.assertEqual(lines[3], 'var GroupTestingStreamBlock = asf.create_streamblock("GroupTestingStreamBlock", { "TestStructBlock": TestStructBlock });')
+        self.assertEqual(lines[4], 'GroupTestingStreamBlock.icon = "placeholder";')
+        self.assertEqual(lines[5], 'GroupTestingStreamBlock.group = "Test";')
+
+
 
     def test_get_searchable_content(self):
         block = TestingStreamBlock()

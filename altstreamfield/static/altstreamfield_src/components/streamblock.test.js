@@ -22,14 +22,32 @@ describe('BlockTypeMenu', () => {
         cleanup();
     });
 
+    test('#groups', () => {
+        let block_types = [
+            {
+                type: 'Mock1',
+                icon: 'placeholder',
+                group: 'test'
+            },
+            {
+                type: 'Mock2',
+                icon: 'placeholder',
+                group: ''
+            }
+        ];
+        let container = render(<BlockTypeMenu blockTypes={block_types} onChosen={() => {}}/>);
+        expect(container.container).toMatchSnapshot();
+        cleanup();
+    });
+
     test('show/hide menu', () => {
         let block_types = [mock_block1, mock_block2];
         let container = render(<BlockTypeMenu blockTypes={block_types} onChosen={() => {}} />);
-        expect(container.container.getElementsByTagName('li').length).toEqual(0);
+        expect(container.container.getElementsByTagName('button').length).toEqual(1);
         let add_btn = container.getByTitle('Add');
         fireEvent.click(add_btn);
         container.rerender(<BlockTypeMenu blockTypes={block_types} onChosen={() => {}} />);
-        expect(container.container.getElementsByTagName('li').length).toEqual(2);
+        expect(container.container.getElementsByTagName('button').length).toEqual(3);
         cleanup();
     });
 
@@ -40,11 +58,11 @@ describe('BlockTypeMenu', () => {
             chosen = block_type;
         }
         let container = render(<BlockTypeMenu blockTypes={block_types} onChosen={onChosen} />);
-        expect(container.container.getElementsByTagName('li').length).toEqual(0);
+        expect(container.container.getElementsByTagName('button').length).toEqual(1);
         let add_btn = container.getByTitle('Add');
         fireEvent.click(add_btn);
         container.rerender(<BlockTypeMenu blockTypes={block_types} onChosen={onChosen} />);
-        expect(container.container.getElementsByTagName('li').length).toEqual(2);
+        expect(container.container.getElementsByTagName('button').length).toEqual(3);
         let menu_btn = container.getByTitle('Mock1');
         fireEvent.click(menu_btn);
         expect(chosen).toBe(mock_block1);
