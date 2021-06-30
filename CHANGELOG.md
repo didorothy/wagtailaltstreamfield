@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.10
+
+* Corrected issue with Wagtail get_document_model() possibly being used before Django App.ready().
+
 ## 0.0.9
 
 * Added the abilit to specify `label` and `group` on `StructBlock` and `StreamBlock`.

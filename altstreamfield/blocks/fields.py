@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 
 from wagtail.core.models import Page, Site
 from wagtail.core.utils import resolve_model_string
-from wagtail.documents.models import get_document_model
+from wagtail.documents import get_document_model
 from wagtail.images import get_image_model
 
 __all__ = [
@@ -433,7 +433,9 @@ class ModelChooserField(Field):
 
 class DocumentChooserField(ModelChooserField):
     '''Represents a selection of a Wagtail document.'''
-    model = get_document_model()
+    @property
+    def model(self):
+        return get_document_model()
 
     @property
     def media(self):
