@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx webpack --mode=development --watch",
-    "build": "npx webpack --mode=production",
+    "build": "npx webpack --mode=production && cp streamfield.css ../altstreamfield/streamfield.css",
     "test": "npx jest --coverage"
   },
   "keywords": [

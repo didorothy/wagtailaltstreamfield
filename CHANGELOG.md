@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.11
+
+* Corrected missing static files.
+
 ## 0.0.10
 
 * Corrected issue with Wagtail get_document_model() possibly being used before Django App.ready().
