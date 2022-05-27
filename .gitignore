@@ -7,4 +7,5 @@ htmlcov/
 node_modules/
 docs/_build/
 altstreamfield/static/altstreamfield/
+wagtail_altstreamfield.egg-info/
 .coverage
