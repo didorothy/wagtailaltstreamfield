@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, wait, waitForDomChange, waitForElementToBeRemoved, cleanup } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import StreamBlockField from "./streamblockfield";
 import FormErrorContext from "../../context/formerror";
 import CharField from "./charfield";

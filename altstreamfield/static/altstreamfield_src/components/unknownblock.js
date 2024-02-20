@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default class UnknownBlock extends React.Component {
     render() {
-        return <div class="raw">
+        return <div className="raw">
             <pre>{JSON.stringify(this.props.block.value, null, '  ')}</pre>
         </div>;
     }

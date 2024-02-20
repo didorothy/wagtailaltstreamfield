@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, wait, waitForDomChange, waitForElementToBeRemoved, cleanup } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import BooleanField from "./booleanfield";
 import FormErrorContext from "../../context/formerror";
 

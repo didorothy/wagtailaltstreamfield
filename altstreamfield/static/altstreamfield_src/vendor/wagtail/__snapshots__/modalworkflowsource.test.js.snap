@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ModalWorkflowSource #filterEntityData DOCUMENT 1`] = `
-Object {
+{
   "filename": "test.pdf",
   "id": 1,
   "url": "/documents/1/test.pdf",
@@ -9,7 +9,7 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #filterEntityData EMBED 1`] = `
-Object {
+{
   "authorName": "Test",
   "embedType": "video",
   "providerName": "YouTube",
@@ -20,7 +20,7 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #filterEntityData IMAGE 1`] = `
-Object {
+{
   "alt": "Test",
   "format": "right",
   "id": 53,
@@ -29,25 +29,25 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #filterEntityData LINK anchor 1`] = `
-Object {
+{
   "url": "#testanchor",
 }
 `;
 
 exports[`ModalWorkflowSource #filterEntityData LINK external 1`] = `
-Object {
+{
   "url": "https://www.example.com/",
 }
 `;
 
 exports[`ModalWorkflowSource #filterEntityData LINK mail 1`] = `
-Object {
+{
   "url": "mailto:test@example.com",
 }
 `;
 
 exports[`ModalWorkflowSource #filterEntityData LINK page 1`] = `
-Object {
+{
   "id": 60,
   "parentId": 1,
   "url": "/",
@@ -55,12 +55,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK external 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": "/admin/choose-external-link/",
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,
@@ -73,12 +73,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK hash 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": "/admin/choose-anchor-link",
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,
@@ -91,12 +91,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK mail 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": "/admin/choose-email-link/",
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,
@@ -109,12 +109,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK no entity 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": "/admin/choose-page/",
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,
@@ -126,12 +126,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK page 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": "/admin/choose-page/1/",
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,
@@ -143,12 +143,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK root page 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": "/admin/choose-page/",
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,
@@ -160,12 +160,12 @@ Object {
 `;
 
 exports[`ModalWorkflowSource #getChooserConfig LINK tel 1`] = `
-Object {
-  "onload": Object {
+{
+  "onload": {
     "type": "page",
   },
   "url": undefined,
-  "urlParams": Object {
+  "urlParams": {
     "allow_anchor_link": true,
     "allow_email_link": true,
     "allow_external_link": true,

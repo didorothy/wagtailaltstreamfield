@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid4 from "uuid/v4";
+import {v4 as uuid4} from "uuid";
 
 import { camel_pascal_to_label } from "../utils/text";
 import UnknownBlock from "./unknownblock";

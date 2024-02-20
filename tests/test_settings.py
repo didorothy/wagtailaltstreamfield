@@ -64,3 +64,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 ROOT_URLCONF = 'tests.urls'
+
+WAGTAILADMIN_BASE_URL = 'http://example.test'

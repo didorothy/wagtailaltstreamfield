@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.13
+
+* Updates to JavaScript code.
+* Support for Wagtail 3.0
+
+## 0.0.12
+
+* Minor changes to support Django 3.2 and Wagtail > 2.13 (test may not run in older versions of wagtail)
+
 ## 0.0.11
 
 * Corrected missing static files.

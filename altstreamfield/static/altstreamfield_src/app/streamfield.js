@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid4 from "uuid/v4";
+import {v4 as uuid4 } from "uuid";
 
 import FormErrorContext from "../context/formerror";
 
